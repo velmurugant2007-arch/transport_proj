@@ -37,7 +37,8 @@ export const authOptions: NextAuthOptions = {
         if (!admin) return null;
 
         const passwordMatch = await bcrypt.compare(password, admin.password);
-        if (!passwordMatch) return null;
+        // Allow plain text passwords if bcrypt fails (for manual database entries)
+        if (!passwordMatch && password !== admin.password) return null;
 
         return {
           id:    admin.id,
