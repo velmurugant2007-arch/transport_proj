@@ -1,0 +1,26 @@
+number,fuelType,make,model,capacity,status,driverName,driverPhone
+TN 01 AB 1001,Diesel,Tata,Starbus,50,ACTIVE,Driver 1,+91 9876500001
+TN 02 AB 1002,Diesel,Tata,Starbus,50,ACTIVE,Driver 2,+91 9876500002
+TN 03 AB 1003,Diesel,Tata,Starbus,50,ACTIVE,Driver 3,+91 9876500003
+TN 04 AB 1004,Diesel,Tata,Starbus,50,ACTIVE,Driver 4,+91 9876500004
+TN 05 AB 1005,Diesel,Tata,Starbus,50,ACTIVE,Driver 5,+91 9876500005
+TN 06 AB 1006,Diesel,Tata,Starbus,50,ACTIVE,Driver 6,+91 9876500006
+TN 07 AB 1007,Diesel,Tata,Starbus,50,ACTIVE,Driver 7,+91 9876500007
+TN 08 AB 1008,Diesel,Tata,Starbus,50,ACTIVE,Driver 8,+91 9876500008
+TN 09 AB 1009,Diesel,Tata,Starbus,50,ACTIVE,Driver 9,+91 9876500009
+TN 10 AB 1010,Diesel,Tata,Starbus,50,ACTIVE,Driver 10,+91 9876500010
+TN 11 AB 1011,Diesel,Tata,Starbus,50,ACTIVE,Driver 11,+91 9876500011
+TN 12 AB 1012,Diesel,Tata,Starbus,50,ACTIVE,Driver 12,+91 9876500012
+TN 13 AB 1013,Diesel,Tata,Starbus,50,ACTIVE,Driver 13,+91 9876500013
+TN 14 AB 1014,Diesel,Tata,Starbus,50,ACTIVE,Driver 14,+91 9876500014
+TN 15 AB 1015,Diesel,Tata,Starbus,50,ACTIVE,Driver 15,+91 9876500015
+TN 16 AB 1016,Diesel,Tata,Starbus,50,ACTIVE,Driver 16,+91 9876500016
+TN 17 AB 1017,Diesel,Tata,Starbus,50,ACTIVE,Driver 17,+91 9876500017
+TN 18 AB 1018,Diesel,Tata,Starbus,50,ACTIVE,Driver 18,+91 9876500018
+TN 19 AB 1019,Diesel,Tata,Starbus,50,ACTIVE,Driver 19,+91 9876500019
+TN 20 AB 1020,Diesel,Tata,Starbus,50,ACTIVE,Driver 20,+91 9876500020
+TN 21 AB 1021,Diesel,Tata,Starbus,50,ACTIVE,Driver 21,+91 9876500021
+TN 22 AB 1022,Diesel,Tata,Starbus,50,ACTIVE,Driver 22,+91 9876500022
+TN 23 AB 1023,Diesel,Tata,Starbus,50,ACTIVE,Driver 23,+91 9876500023
+TN 24 AB 1024,Diesel,Tata,Starbus,50,ACTIVE,Driver 24,+91 9876500024
+TN 25 AB 1025,Diesel,Tata,Starbus,50,ACTIVE,Driver 25,+91 9876500025

@@ -1,0 +1,21 @@
+vehicleNumber,date,serviceType,cost,serviceCenter,spareParts,notes
+TN 02 AB 1002,2026-04-01,Regular,5000,Service Center 1,Oil Filter,Monthly routine check
+TN 03 AB 1003,2026-04-02,Regular,5000,Service Center 2,Oil Filter,Monthly routine check
+TN 04 AB 1004,2026-04-03,Regular,5000,Service Center 3,Oil Filter,Monthly routine check
+TN 05 AB 1005,2026-04-04,Regular,5000,Service Center 4,Oil Filter,Monthly routine check
+TN 01 AB 1001,2026-04-05,Regular,5000,Service Center 5,Oil Filter,Monthly routine check
+TN 02 AB 1002,2026-04-06,Regular,5000,Service Center 6,Oil Filter,Monthly routine check
+TN 03 AB 1003,2026-04-07,Regular,5000,Service Center 7,Oil Filter,Monthly routine check
+TN 04 AB 1004,2026-04-08,Regular,5000,Service Center 8,Oil Filter,Monthly routine check
+TN 05 AB 1005,2026-04-09,Regular,5000,Service Center 9,Oil Filter,Monthly routine check
+TN 01 AB 1001,2026-04-10,Regular,5000,Service Center 10,Oil Filter,Monthly routine check
+TN 02 AB 1002,2026-04-11,Regular,5000,Service Center 11,Oil Filter,Monthly routine check
+TN 03 AB 1003,2026-04-12,Regular,5000,Service Center 12,Oil Filter,Monthly routine check
+TN 04 AB 1004,2026-04-13,Regular,5000,Service Center 13,Oil Filter,Monthly routine check
+TN 05 AB 1005,2026-04-14,Regular,5000,Service Center 14,Oil Filter,Monthly routine check
+TN 01 AB 1001,2026-04-15,Regular,5000,Service Center 15,Oil Filter,Monthly routine check
+TN 02 AB 1002,2026-04-16,Regular,5000,Service Center 16,Oil Filter,Monthly routine check
+TN 03 AB 1003,2026-04-17,Regular,5000,Service Center 17,Oil Filter,Monthly routine check
+TN 04 AB 1004,2026-04-18,Regular,5000,Service Center 18,Oil Filter,Monthly routine check
+TN 05 AB 1005,2026-04-19,Regular,5000,Service Center 19,Oil Filter,Monthly routine check
+TN 01 AB 1001,2026-04-20,Regular,5000,Service Center 20,Oil Filter,Monthly routine check

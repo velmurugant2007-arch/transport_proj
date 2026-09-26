@@ -1,0 +1,21 @@
+type,amount,date,vehicleNumber,notes
+Parking,150,2026-05-01,TN 02 AB 1002,Daily trip expense
+Allowance,150,2026-05-02,TN 03 AB 1003,Daily trip expense
+Emergency,150,2026-05-03,TN 04 AB 1004,Daily trip expense
+Miscellaneous,150,2026-05-04,TN 05 AB 1005,Daily trip expense
+Toll,150,2026-05-05,TN 01 AB 1001,Daily trip expense
+Parking,150,2026-05-06,TN 02 AB 1002,Daily trip expense
+Allowance,150,2026-05-07,TN 03 AB 1003,Daily trip expense
+Emergency,150,2026-05-08,TN 04 AB 1004,Daily trip expense
+Miscellaneous,150,2026-05-09,TN 05 AB 1005,Daily trip expense
+Toll,150,2026-05-10,TN 01 AB 1001,Daily trip expense
+Parking,150,2026-05-11,TN 02 AB 1002,Daily trip expense
+Allowance,150,2026-05-12,TN 03 AB 1003,Daily trip expense
+Emergency,150,2026-05-13,TN 04 AB 1004,Daily trip expense
+Miscellaneous,150,2026-05-14,TN 05 AB 1005,Daily trip expense
+Toll,150,2026-05-15,TN 01 AB 1001,Daily trip expense
+Parking,150,2026-05-16,TN 02 AB 1002,Daily trip expense
+Allowance,150,2026-05-17,TN 03 AB 1003,Daily trip expense
+Emergency,150,2026-05-18,TN 04 AB 1004,Daily trip expense
+Miscellaneous,150,2026-05-19,TN 05 AB 1005,Daily trip expense
+Toll,150,2026-05-20,TN 01 AB 1001,Daily trip expense

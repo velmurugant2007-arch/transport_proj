@@ -1,13 +1,251 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Vehicle {
+  id                 String   @id @default(cuid())
+  BUS_NUMBER         String   @unique @map("number") // Vehicle Number (e.g. TN 01 AA 1111)
+  FUEL_TYPE          String   @map("type") // Diesel / CNG
+  MAKE               String?  @map("make")
+  MODEL              String?  @map("model")
+  CHASSIS_NUMBER     String?  @map("chassisNumber")
+  REGISTER_NUMBER    String?  @map("registrationNumber")
+  CAPACITY           Int      @map("capacity")
+  STATUS             String   @default("ACTIVE") @map("status") // ACTIVE, MAINTENANCE, INACTIVE
+  
+  DRIVER_NAME        String?  @map("driverName")
+  DRIVER_PHONE       String?  @map("driverPhone")
+
+  // Expiry Dates & Document Details
+  INSURANCE_NUMBER    String?   @map("insuranceNumber")
+  INSURANCE_DUE_DATE  DateTime? @map("insuranceDueDate")
+  INSURANCE_EXPIRY    DateTime? @map("insuranceExpiry")
+
+  TAX_NUMBER          String?   @map("taxNumber")
+  TAX_DUE_DATE        DateTime? @map("taxDueDate")
+  TAX_EXPIRY          DateTime? @map("taxExpiry")
+
+  ROAD_PERMIT_NUMBER  String?   @map("roadPermitNumber")
+  ROAD_PERMIT_EXPIRY  DateTime? @map("roadPermitExpiry")
+
+  POLLUTION_NUMBER    String?   @map("pollutionNumber")
+  POLLUTION_EXPIRY    DateTime? @map("pollutionExpiry")
+
+  FC_NUMBER           String?   @map("fcNumber") // Fitness Certificate
+  FC_EXPIRY           DateTime? @map("fcExpiry")
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  createdBy          String?
+  updatedBy          String?
+  deletedAt          DateTime?
+  deletedBy          String?
+
+  // Relations
+  routes             Route[]
+  fuelLogs           FuelLog[]
+  maintenanceLogs    MaintenanceLog[]
+  students           Student[]
+  expenses           Expense[]
+}
+
+model Route {
+  id          String   @id @default(cuid())
+  NAME        String   @unique @map("name")
+  DESCRIPTION String?  @map("description")
+  DISTANCE    Float?   @map("distance")
+  TIMING      String?  @map("timing")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+  updatedBy   String?
+  deletedAt   DateTime?
+  deletedBy   String?
+
+  // Relations
+  assignedBuses Vehicle[]
+  stops         Stop[]
+  students      Student[]
+}
+
+model Stop {
+  id        String   @id @default(cuid())
+  NAME      String   @map("name")
+  ORDER     Int      @map("order")
+  TIMING    String?  @map("timing")
+  AMOUNT    Float?   @default(0) @map("amount")
+  DISTANCE  Float?   @default(0) @map("distance")
+  LATITUDE  Float?   @map("latitude")
+  LONGITUDE Float?   @map("longitude")
+  
+  routeId   String
+  route     Route    @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  
+  students  Student[]
+
+  @@unique([routeId, NAME])
+}
+
+model Student {
+  id              String   @id @default(cuid())
+  STUDENT_NAME     String   @map("name")
+  REGISTER_NUMBER  String   @unique @map("registerNumber")
+  SERIAL_NUMBER    String?  @map("serialNumber") // Directory Sl No
+  
+  // Academic Context
+  YEAR            String?  @map("year") // 1st, 2nd, 3rd, 4th
+  DEGREE          String?  @map("degree") // B.E, B.Tech, MBA, etc.
+  BRANCH          String?  @map("branch") // CSE, IT, MECH, etc.
+  
+  // Transportation Context (Direct Manual Entry)
+  BOARDING_POINT   String?  @map("boardingPoint") // Direct entry for boarding point
+  BUS_NUMBER       String?  @map("busNumber") // Direct entry for bus number
+  BUS_REG_NUMBER   String?  @map("busRegNumber") // Registration Number for bus
+  AREA            String?  @map("area") // Geographic area
+  
+  // Financial Context (Office Workflow)
+  AMOUNT          Float?   @default(0) @map("amount")
+  CHALLAN_NUMBER   String?  @map("challanNumber")
+  PAYMENT_MODE     String?  @map("paymentMode") // Cash, Card, Online
+  PAYMENT_DATE     DateTime? @map("paymentDate")
+  PAYMENT_STATUS   String?  @default("PENDING") @map("paymentStatus") // PAID, PENDING, UNPAID
+  
+  // Office Archiving Reference
+  ORDER           String?  @map("order") // In which order in system
+  BUNCH           String?  @map("bunch") // Which bunch is the challan
+  ROUTE_NAME      String?  @map("routeName")
+
+  // Relations (System logic)
+  boardingPointId String?
+  boardingPointRel Stop?   @relation(fields: [boardingPointId], references: [id], onDelete: SetNull)
+  assignedBusId   String?
+  assignedBus     Vehicle? @relation(fields: [assignedBusId], references: [id], onDelete: SetNull)
+  routeId         String?
+  route           Route?   @relation(fields: [routeId], references: [id], onDelete: SetNull)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  createdBy       String?
+  updatedBy       String?
+  deletedAt       DateTime?
+  deletedBy       String?
+}
+
+// Master Transport Ledger (Historical & Import Log)
+model TransportRecord {
+  id               String   @id @default(cuid())
+  SERIAL_NUMBER    String?  @map("serialNumber")
+  REGISTER_NUMBER  String   @map("registerNumber")
+  NAME             String   @map("name")
+  YEAR             String?  @map("year")
+  DEGREE           String?  @map("degree")
+  BRANCH           String?  @map("branch")
+  BOARDING_POINT   String?  @map("boardingPoint")
+  ROUTE_SECTOR     String?  @map("routeSector")
+  BUS_NUMBER       String?  @map("busNumber")
+  BUS_REG_NUMBER   String?  @map("busRegNumber")
+  AMOUNT           Float?   @map("amount")
+  AREA             String?  @map("area")
+  CHALLAN_NUMBER   String?  @map("challanNumber")
+  PAYMENT_MODE     String?  @map("paymentMode")
+  PAYMENT_DATE     DateTime? @map("paymentDate")
+  PAYMENT_STATUS   String?  @map("paymentStatus")
+  ORDER            String?  @map("order")
+  BUNCH            String?  @map("bunch")
+  
+  importBatchId    String?  
+  syncStatus       String   @default("COMPLETED") 
+  
+  createdAt        DateTime @default(now())
+  createdBy        String?
+}
+
+model FuelLog {
+  id               String   @id @default(cuid())
+  DATE             DateTime @map("date")
+  FUEL_TYPE        String   @map("fuelType")
+  LITRES           Float    @map("quantity")
+  AMOUNT           Float    @map("cost")
+  OPENING_KM       Float    @map("odometer") @default(0)
+  CLOSING_KM       Float?   @map("endOdometer")
+  RUNNING_KM       Float?   @map("distanceTravelled")
+  MILEAGE          Float?   @map("mileage")
+  INDENT_NUMBER    String?  @default("-") @map("indentNumber")
+
+  vehicleId        String
+  vehicle          Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime @default(now())
+  updatedBy        String?
+  updatedAt        DateTime @updatedAt @default(now())
+  createdBy        String?
+  deletedAt        DateTime?
+  deletedBy        String?
+}
+
+model MaintenanceLog {
+  id               String   @id @default(cuid())
+  DATE             DateTime @map("date")
+  SERVICE_TYPE     String   @map("serviceType") // Regular, Breakdown
+  BREAKDOWN_DETAILS String?  @map("breakdownDetails")
+  SPARE_PARTS       String?  @map("spareParts")
+  AMOUNT           Float    @map("cost")
+  SERVICE_CENTER    String?  @map("serviceCenter")
+  NEXT_SERVICE_DATE  DateTime? @map("nextServiceDate")
+  NOTES            String?  @map("notes")
+  vehicleId        String
+  vehicle          Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime @default(now())
+  updatedBy        String?
+  updatedAt        DateTime @updatedAt @default(now())
+  createdBy        String?
+  deletedAt        DateTime?
+  deletedBy        String?
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  TYPE        String   @map("type") // Toll, Parking, Driver Allowance, Emergency, Miscellaneous
+  AMOUNT      Float    @map("amount")
+  DATE        DateTime @map("date")
+  NOTES       String?  @map("notes")
+  vehicles    Vehicle[]
+
+  createdAt   DateTime @default(now())
+  createdBy   String?
+  updatedBy   String?
+  deletedAt   DateTime?
+  deletedBy   String?
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  message   String
+  type      String   // Warning, Info, Alert
+  isRead    Boolean  @default(false)
+  date      DateTime @default(now())
+  
+  createdBy String?
+  updatedBy String?
+  deletedAt DateTime?
+  deletedBy String?
 }

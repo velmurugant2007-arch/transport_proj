@@ -1,0 +1,11 @@
+name,distance,timing,description,boardingPoints
+Route 1,11,07:30 AM - 08:30 AM,Main route for sector 1,"Stop A1,Stop B1,Stop C1,Stop D1"
+Route 2,12,07:30 AM - 08:30 AM,Main route for sector 2,"Stop A2,Stop B2,Stop C2,Stop D2"
+Route 3,13,07:30 AM - 08:30 AM,Main route for sector 3,"Stop A3,Stop B3,Stop C3,Stop D3"
+Route 4,14,07:30 AM - 08:30 AM,Main route for sector 4,"Stop A4,Stop B4,Stop C4,Stop D4"
+Route 5,15,07:30 AM - 08:30 AM,Main route for sector 5,"Stop A5,Stop B5,Stop C5,Stop D5"
+Route 6,16,07:30 AM - 08:30 AM,Main route for sector 6,"Stop A6,Stop B6,Stop C6,Stop D6"
+Route 7,17,07:30 AM - 08:30 AM,Main route for sector 7,"Stop A7,Stop B7,Stop C7,Stop D7"
+Route 8,18,07:30 AM - 08:30 AM,Main route for sector 8,"Stop A8,Stop B8,Stop C8,Stop D8"
+Route 9,19,07:30 AM - 08:30 AM,Main route for sector 9,"Stop A9,Stop B9,Stop C9,Stop D9"
+Route 10,20,07:30 AM - 08:30 AM,Main route for sector 10,"Stop A10,Stop B10,Stop C10,Stop D10"
