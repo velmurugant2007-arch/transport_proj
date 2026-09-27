@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 // ── Routes that don't require authentication ──────────────────
-const PUBLIC_PREFIXES = ["/login", "/register", "/api/auth", "/_next", "/favicon"];
+const PUBLIC_PREFIXES = ["/login", "/register", "/api/auth", "/api/debug", "/_next", "/favicon"];
 
 function isPublic(pathname: string): boolean {
   return (
@@ -18,7 +18,7 @@ function buildCSP(): string {
 
   const directives: Record<string, string> = {
     "default-src":               "'self'",
-    "script-src":                isDev ? "'self' 'unsafe-eval' 'unsafe-inline'" : "'self'",
+    "script-src":                isDev ? "'self' 'unsafe-eval' 'unsafe-inline'" : "'self' 'unsafe-inline'",
     "style-src":                 "'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src":                  "'self' https://fonts.gstatic.com",
     "img-src":                   "'self' data: blob: https://*.google.com https://*.googleapis.com https://*.openstreetmap.org https://*.arcgisonline.com https://unpkg.com",
