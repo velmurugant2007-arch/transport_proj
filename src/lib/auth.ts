@@ -36,8 +36,15 @@ export const authOptions: NextAuthOptions = {
         const admin = await prisma.admin.findUnique({ where: { email } });
         if (!admin) return null;
 
-        const passwordMatch = await bcrypt.compare(password, admin.password);
-        // Allow plain text passwords if bcrypt fails (for manual database entries)
+        // Try bcrypt comparison first (for hashed passwords)
+        let passwordMatch = false;
+        try {
+          passwordMatch = await bcrypt.compare(password, admin.password);
+        } catch {
+          // bcrypt.compare throws if stored password is not a valid hash
+          // Fall through to plain text comparison below
+        }
+        // Allow plain text passwords for manual database entries
         if (!passwordMatch && password !== admin.password) return null;
 
         return {
