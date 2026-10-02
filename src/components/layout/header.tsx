@@ -150,10 +150,8 @@ export function Header() {
         {/* Left Identity Context */}
         <div className="flex items-center gap-3 md:gap-5">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <button className="md:hidden p-2 -ml-2 rounded-lg hover:bg-white/10 transition-colors">
-                <Menu className="h-6 w-6 text-white" />
-              </button>
+            <SheetTrigger className="md:hidden p-2 -ml-2 rounded-lg hover:bg-white/10 transition-colors cursor-pointer">
+              <Menu className="h-6 w-6 text-white" />
             </SheetTrigger>
             <SheetContent side="left" className="p-0 bg-transparent border-none w-[260px]">
               <Sidebar />
