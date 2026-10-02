@@ -20,8 +20,7 @@ export default async function DashboardLayout({
       <div className="flex flex-col flex-1 min-w-0">
         <Header />
         <main
-          className="flex-1 overflow-auto relative z-[10]"
-          style={{ padding: "2rem" }}
+          className="flex-1 overflow-auto relative z-[10] p-4 md:p-8"
         >
           <div className="max-w-[1600px] mx-auto">
             {children}

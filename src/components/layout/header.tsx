@@ -2,10 +2,12 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { Bell, Search, LogOut, ChevronDown, Zap, X, User, ShieldCheck } from "lucide-react";
+import { Bell, Search, LogOut, ChevronDown, Zap, X, User, ShieldCheck, Menu } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sidebar } from "./sidebar";
 
 const PAGE_TITLES: Record<string, { title: string; sub: string }> = {
   "/dashboard":     { title: "Dashboard",            sub: "Transport overview" },
@@ -48,7 +50,13 @@ export function Header() {
   const [drop, setDrop]  = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery]           = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -138,11 +146,21 @@ export function Header() {
         </div>
       )}
 
-      <header className="glass-topbar flex items-center justify-between px-10 h-[80px] sticky top-0 z-[40]">
+      <header className="glass-topbar flex items-center justify-between px-4 md:px-10 h-[80px] sticky top-0 z-[40]">
         {/* Left Identity Context */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 md:gap-5">
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <button className="md:hidden p-2 -ml-2 rounded-lg hover:bg-white/10 transition-colors">
+                <Menu className="h-6 w-6 text-white" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0 bg-transparent border-none w-[260px]">
+              <Sidebar />
+            </SheetContent>
+          </Sheet>
           <div className="flex flex-col">
-            <h2 className="text-[19px] font-black text-white tracking-tight leading-tight">
+            <h2 className="text-[16px] md:text-[19px] font-black text-white tracking-tight leading-tight">
               {page.title}
             </h2>
             <p className="text-[11px] font-bold text-white/40 tracking-[0.05em] uppercase mt-1">
