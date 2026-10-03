@@ -120,7 +120,78 @@ export function StudentList({ students }: { students: any[] }) {
         </div>
 
         <div className="panel-lux overflow-hidden">
-          <div className="overflow-x-auto">
+          
+          {/* Mobile Card View */}
+          <div className="md:hidden flex flex-col divide-y divide-white/5">
+            {filtered.map((s) => (
+              <div key={s.id} className={cn("p-4 flex flex-col gap-3 transition-colors", selectedIds.includes(s.id) && "bg-primary/5")}>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-3">
+                    <Checkbox 
+                      checked={selectedIds.includes(s.id)}
+                      onChange={() => handleSelectRow(s.id)}
+                      className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                    />
+                    <div>
+                      <p className="text-sm font-black text-white uppercase">{s.STUDENT_NAME}</p>
+                      <p className="text-[10px] font-bold text-white/40">{s.REGISTER_NUMBER} · {s.YEAR || "N/A"}</p>
+                    </div>
+                  </div>
+                  <Badge className={cn(
+                    "text-[9px] font-black uppercase px-2 py-0.5 rounded-full border-none",
+                    s.PAYMENT_STATUS === "PAID" ? "bg-green-500/20 text-green-400" : "bg-amber-500/20 text-amber-400"
+                  )}>
+                    {s.PAYMENT_STATUS}
+                  </Badge>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-2 mt-1 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                  <div>
+                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Bus</p>
+                    <p className="text-xs font-black text-primary">{s.BUS_NUMBER || "UNASSIGNED"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Boarding</p>
+                    <p className="text-xs font-bold text-white/80 truncate">{s.BOARDING_POINT || "-"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Amount</p>
+                    <p className="text-xs font-black text-white">₹{s.AMOUNT?.toLocaleString() || "0"}</p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Degree</p>
+                    <p className="text-xs font-bold text-white/60">{s.DEGREE || "-"} / {s.BRANCH || "-"}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex flex-col gap-0.5">
+                    <div className="flex items-center gap-1.5 text-[8px] font-black text-white/30 uppercase tracking-tighter">
+                      <Plus size={8} className="text-primary" />
+                      <span>{s.createdBy || "System"}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Link href={`/students/${s.id}/edit`}>
+                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-white/10 rounded-lg">
+                        <Plus className="h-4 w-4 rotate-45" />
+                      </Button>
+                    </Link>
+                    <DeleteButton 
+                      onDelete={async () => { await deleteStudent(s.id); }} 
+                      itemName={s.STUDENT_NAME}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            {filtered.length === 0 && (
+              <div className="p-8 text-center text-white/40 font-bold uppercase tracking-widest text-xs">No students found</div>
+            )}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden md:block overflow-x-auto">
           <div className="min-w-[1200px]">
           <Table>
             <TableHeader className="tbl-head">

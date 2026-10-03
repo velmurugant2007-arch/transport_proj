@@ -192,8 +192,8 @@ export default function RouteMapClient({ routes }: { routes: Route[] }) {
       <LeafletInit />
 
       {/* ── Side panel ── */}
-      <div className={`relative z-[500] flex flex-col transition-all duration-300 ${sideOpen ? "w-[340px]" : "w-0 overflow-hidden"}`}
-        style={{ background: "rgba(10,10,12,0.68)", backdropFilter: "blur(18px)", borderRight: "1px solid rgba(255,255,255,0.05)", boxShadow: "20px 0 40px rgba(0,0,0,0.4)" }}>
+      <div className={`absolute md:relative top-0 left-0 h-full z-[500] flex flex-col transition-all duration-300 ${sideOpen ? "w-full md:w-[340px]" : "w-0 overflow-hidden"}`}
+        style={{ background: "rgba(10,10,12,0.95)", backdropFilter: "blur(18px)", borderRight: "1px solid rgba(255,255,255,0.05)", boxShadow: "20px 0 40px rgba(0,0,0,0.4)" }}>
         <div className="p-4 border-b border-white/10 flex items-center justify-between">
           <div>
             <h2 className="text-sm font-black text-white uppercase tracking-widest">Route Map</h2>
