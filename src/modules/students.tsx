@@ -122,59 +122,59 @@ export function StudentList({ students }: { students: any[] }) {
         <div className="panel-lux overflow-hidden">
           
           {/* Mobile Card View */}
-          <div className="md:hidden flex flex-col divide-y divide-white/5">
+          <div className="md:hidden grid grid-cols-2 gap-2 p-2">
             {filtered.map((s) => (
-              <div key={s.id} className={cn("p-4 flex flex-col gap-3 transition-colors", selectedIds.includes(s.id) && "bg-primary/5")}>
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
+              <div key={s.id} className={cn("p-2 flex flex-col gap-2 rounded-xl border border-white/5 bg-black/20 transition-colors", selectedIds.includes(s.id) && "bg-primary/5 border-primary/50")}>
+                <div className="flex items-start justify-between gap-1">
+                  <div className="flex items-start gap-1.5 min-w-0">
                     <Checkbox 
                       checked={selectedIds.includes(s.id)}
                       onChange={() => handleSelectRow(s.id)}
-                      className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                      className="border-white/20 w-3 h-3 data-[state=checked]:bg-primary data-[state=checked]:border-primary mt-0.5 shrink-0"
                     />
-                    <div>
-                      <p className="text-sm font-black text-white uppercase">{s.STUDENT_NAME}</p>
-                      <p className="text-[10px] font-bold text-white/40">{s.REGISTER_NUMBER} · {s.YEAR || "N/A"}</p>
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-black text-white uppercase line-clamp-1">{s.STUDENT_NAME}</p>
+                      <p className="text-[8px] font-bold text-white/40 line-clamp-1">{s.REGISTER_NUMBER} · {s.YEAR || "N/A"}</p>
                     </div>
                   </div>
                   <Badge className={cn(
-                    "text-[9px] font-black uppercase px-2 py-0.5 rounded-full border-none",
+                    "text-[6px] font-black uppercase px-1 py-[1px] rounded-full border-none shrink-0",
                     s.PAYMENT_STATUS === "PAID" ? "bg-green-500/20 text-green-400" : "bg-amber-500/20 text-amber-400"
                   )}>
                     {s.PAYMENT_STATUS}
                   </Badge>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-2 mt-1 bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                <div className="grid grid-cols-2 gap-1.5 mt-1 bg-white/[0.02] p-2 rounded-lg border border-white/5">
                   <div>
-                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Bus</p>
-                    <p className="text-xs font-black text-primary">{s.BUS_NUMBER || "UNASSIGNED"}</p>
+                    <p className="text-[7px] font-black text-white/30 uppercase tracking-widest">Bus</p>
+                    <p className="text-[9px] font-black text-primary">{s.BUS_NUMBER || "UNASSIGNED"}</p>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[7px] font-black text-white/30 uppercase tracking-widest">Boarding</p>
+                    <p className="text-[9px] font-bold text-white/80 truncate">{s.BOARDING_POINT || "-"}</p>
                   </div>
                   <div>
-                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Boarding</p>
-                    <p className="text-xs font-bold text-white/80 truncate">{s.BOARDING_POINT || "-"}</p>
+                    <p className="text-[7px] font-black text-white/30 uppercase tracking-widest">Amount</p>
+                    <p className="text-[9px] font-black text-white">₹{s.AMOUNT?.toLocaleString() || "0"}</p>
                   </div>
-                  <div>
-                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Amount</p>
-                    <p className="text-xs font-black text-white">₹{s.AMOUNT?.toLocaleString() || "0"}</p>
-                  </div>
-                  <div>
-                    <p className="text-[9px] font-black text-white/30 uppercase tracking-widest">Degree</p>
-                    <p className="text-xs font-bold text-white/60">{s.DEGREE || "-"} / {s.BRANCH || "-"}</p>
+                  <div className="min-w-0">
+                    <p className="text-[7px] font-black text-white/30 uppercase tracking-widest">Degree</p>
+                    <p className="text-[9px] font-bold text-white/60 truncate">{s.DEGREE || "-"} / {s.BRANCH || "-"}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between mt-1">
+                <div className="flex items-center justify-between mt-0.5">
                   <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 text-[8px] font-black text-white/30 uppercase tracking-tighter">
-                      <Plus size={8} className="text-primary" />
-                      <span>{s.createdBy || "System"}</span>
+                    <div className="flex items-center gap-1 text-[7px] font-black text-white/30 uppercase tracking-tighter">
+                      <Plus size={6} className="text-primary" />
+                      <span className="line-clamp-1">{s.createdBy || "System"}</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
                     <Link href={`/students/${s.id}/edit`}>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-white/10 rounded-lg">
-                        <Plus className="h-4 w-4 rotate-45" />
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 hover:bg-white/10 rounded-md">
+                        <Plus className="h-3 w-3 rotate-45" />
                       </Button>
                     </Link>
                     <DeleteButton 
@@ -348,65 +348,65 @@ export function StudentFields({
   };
 
   return (
-    <div className="space-y-8 md:space-y-12">
+    <div className="space-y-6 md:space-y-12">
       {/* Identity Group */}
       <section>
-        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-4 md:mb-8 flex items-center gap-2 md:gap-3">
           <User size={16} className="md:w-[18px] md:h-[18px]" /> Student Identity
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-8 md:gap-8">
-          <div className="space-y-2.5">
-            <Label htmlFor="name" className="text-[11px] font-black uppercase tracking-widest text-white/40">Full Legal Name</Label>
-            <Input id="name" name="name" defaultValue={defaults.STUDENT_NAME} placeholder="e.g. Adithya V" className="input-lux h-11" required />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8 md:gap-8">
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="name" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Full Legal Name</Label>
+            <Input id="name" name="name" defaultValue={defaults.STUDENT_NAME} placeholder="e.g. Adithya V" className="input-lux h-11 md:h-12" required />
           </div>
-          <div className="space-y-2.5">
-            <Label htmlFor="registerNumber" className="text-[11px] font-black uppercase tracking-widest text-white/40">Register Number</Label>
-            <Input id="registerNumber" name="registerNumber" defaultValue={defaults.REGISTER_NUMBER} placeholder="e.g. 9213..." className="input-lux h-11" required />
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="registerNumber" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Register Number</Label>
+            <Input id="registerNumber" name="registerNumber" defaultValue={defaults.REGISTER_NUMBER} placeholder="e.g. 9213..." className="input-lux h-11 md:h-12" required />
           </div>
-          <div className="space-y-2.5">
-            <Label htmlFor="serialNumber" className="text-[11px] font-black uppercase tracking-widest text-white/40">Sl.No (Directory)</Label>
-            <Input id="serialNumber" name="serialNumber" defaultValue={defaults.SERIAL_NUMBER} placeholder="e.g. 45" className="input-lux h-11" />
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="serialNumber" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Sl.No (Directory)</Label>
+            <Input id="serialNumber" name="serialNumber" defaultValue={defaults.SERIAL_NUMBER} placeholder="e.g. 45" className="input-lux h-11 md:h-12" />
           </div>
         </div>
       </section>
 
       {/* Academic Group */}
       <section className="pt-6 md:pt-10 border-t border-white/5">
-        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-4 md:mb-8 flex items-center gap-2 md:gap-3">
           <GraduationCap size={16} className="md:w-[18px] md:h-[18px]" /> Academic Context
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-5 gap-x-8 md:gap-8">
-          <div className="space-y-2.5">
-            <Label htmlFor="year" className="text-[11px] font-black uppercase tracking-widest text-white/40">Year of Study</Label>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-4 gap-x-8 md:gap-8">
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="year" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Year of Study</Label>
             <Select name="year" defaultValue={defaults.YEAR || "1st"}>
-              <SelectTrigger className="input-lux h-11"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue /></SelectTrigger>
               <SelectContent className="bg-[#121418] border-white/10">
                 {["1st", "2nd", "3rd", "4th", "MBA-1", "MBA-2"].map(y => <SelectItem key={y} value={y} className="font-bold">{y} Year</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2.5">
-            <Label htmlFor="degree" className="text-[11px] font-black uppercase tracking-widest text-white/40">Degree</Label>
-            <Input id="degree" name="degree" defaultValue={defaults.DEGREE} placeholder="e.g. B.E" className="input-lux h-11" />
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="degree" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Degree</Label>
+            <Input id="degree" name="degree" defaultValue={defaults.DEGREE} placeholder="e.g. B.E" className="input-lux h-11 md:h-12" />
           </div>
-          <div className="space-y-2.5 md:col-span-2">
-            <Label htmlFor="branch" className="text-[11px] font-black uppercase tracking-widest text-white/40">Department / Branch</Label>
-            <Input id="branch" name="branch" defaultValue={defaults.BRANCH} placeholder="e.g. Computer Science Engineering" className="input-lux h-11" />
+          <div className="space-y-2 md:space-y-2.5 md:col-span-2">
+            <Label htmlFor="branch" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Department / Branch</Label>
+            <Input id="branch" name="branch" defaultValue={defaults.BRANCH} placeholder="e.g. Computer Science Engineering" className="input-lux h-11 md:h-12" />
           </div>
         </div>
       </section>
 
       {/* Transportation Group */}
       <section className="pt-6 md:pt-10 border-t border-white/5">
-        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-4 md:mb-8 flex items-center gap-2 md:gap-3">
           <Bus size={16} className="md:w-[18px] md:h-[18px]" /> Logistics Allocation
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-10 md:gap-10">
-          <div className="space-y-8">
-            <div className="space-y-2.5">
-              <Label className="text-[11px] font-black uppercase tracking-widest text-white/40">Strategic Route</Label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-10 md:gap-10">
+          <div className="space-y-4 md:space-y-8">
+            <div className="space-y-2 md:space-y-2.5">
+              <Label className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Strategic Route</Label>
               <Select value={selectedRouteId} onValueChange={handleRouteChange}>
-                <SelectTrigger className="input-lux h-11"><SelectValue placeholder="Identify Route" /></SelectTrigger>
+                <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue placeholder="Identify Route" /></SelectTrigger>
                 <SelectContent className="bg-[#121418] border-white/10">
                   <SelectItem value="" className="font-bold text-primary italic">Manual Designation Only</SelectItem>
                   {routes.map(r => <SelectItem key={r.id} value={r.id} className="font-bold">{r.NAME}</SelectItem>)}
@@ -415,18 +415,18 @@ export function StudentFields({
               <input type="hidden" name="routeId" value={selectedRouteId} />
             </div>
 
-            <div className="space-y-2.5">
-              <Label htmlFor="boardingPoint" className="text-[11px] font-black uppercase tracking-widest text-white/40">Boarding Point</Label>
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="boardingPoint" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Boarding Point</Label>
               <div className="relative">
                 {selectedRouteId ? (
                   <Select value={selectedStopId} onValueChange={handleStopChange}>
-                    <SelectTrigger className="input-lux h-11"><SelectValue placeholder="Select Point" /></SelectTrigger>
+                    <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue placeholder="Select Point" /></SelectTrigger>
                     <SelectContent className="bg-[#121418] border-white/10">
                       {currentStops.map(s => <SelectItem key={s.id} value={s.id} className="font-bold">{s.NAME}</SelectItem>)}
                     </SelectContent>
                   </Select>
                 ) : (
-                  <Input id="boardingPoint" name="boardingPoint" value={boardingPoint} onChange={(e) => setBoardingPoint(e.target.value)} placeholder="e.g. Clock Tower" className="input-lux h-11" />
+                  <Input id="boardingPoint" name="boardingPoint" value={boardingPoint} onChange={(e) => setBoardingPoint(e.target.value)} placeholder="e.g. Clock Tower" className="input-lux h-11 md:h-12" />
                 )}
                 {/* Hidden inputs to ensure boardingPoint and boardingPointId are submitted when using Select */}
                 {selectedRouteId && (
@@ -437,28 +437,28 @@ export function StudentFields({
                 )}
               </div>
               {selectedRouteId && (
-                <div className="flex items-center px-3 bg-primary/10 border border-primary/20 rounded-xl text-primary gap-2 animate-pulse">
+                <div className="flex items-center px-3 bg-primary/10 border border-primary/20 rounded-lg md:rounded-xl text-primary gap-2 animate-pulse">
                   <Info size={12} />
-                  <span className="text-[9px] font-bold uppercase tracking-tighter py-1.5">Point-specific logistics auto-filled</span>
+                  <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-tighter py-1.5">Point-specific logistics auto-filled</span>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="space-y-8">
-            <div className="space-y-2.5">
-              <Label htmlFor="assignedBusId" className="text-[11px] font-black uppercase tracking-widest text-white/40">Vehicle Asset</Label>
+          <div className="space-y-4 md:space-y-8">
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="assignedBusId" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Vehicle Asset</Label>
               <Select name="assignedBusId" defaultValue={defaults.assignedBusId || ""}>
-                <SelectTrigger className="input-lux h-11"><SelectValue placeholder="Identify Bus" /></SelectTrigger>
+                <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue placeholder="Identify Bus" /></SelectTrigger>
                 <SelectContent className="bg-[#121418] border-white/10">
                   <SelectItem value="" className="font-bold text-white/30 italic">No Asset Assigned</SelectItem>
                   {vehicles.map(v => <SelectItem key={v.id} value={v.id} className="font-bold">Bus {v.BUS_NUMBER} (Cap: {v.CAPACITY})</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="area" className="text-[11px] font-black uppercase tracking-widest text-white/40">Geographic Area</Label>
-              <Input id="area" name="area" defaultValue={defaults.AREA} placeholder="e.g. Dindigul Central" className="input-lux h-11" />
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="area" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Geographic Area</Label>
+              <Input id="area" name="area" defaultValue={defaults.AREA} placeholder="e.g. Dindigul Central" className="input-lux h-11 md:h-12" />
             </div>
           </div>
         </div>
@@ -466,18 +466,18 @@ export function StudentFields({
 
       {/* Financial Group */}
       <section className="pt-6 md:pt-10 border-t border-white/5">
-        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-4 md:mb-8 flex items-center gap-2 md:gap-3">
           <CreditCard size={16} className="md:w-[18px] md:h-[18px]" /> Financial Protocol
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-8 md:gap-8">
-          <div className="space-y-2.5">
-            <Label htmlFor="amount" className="text-[11px] font-black uppercase tracking-widest text-white/40">Annual Fee (₹)</Label>
-            <Input id="amount" name="amount" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} className="input-lux h-11 font-black text-white" required />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-8 md:gap-8">
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="amount" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Annual Fee (₹)</Label>
+            <Input id="amount" name="amount" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} className="input-lux h-11 md:h-12 font-black text-white" required />
           </div>
-          <div className="space-y-2.5">
-            <Label htmlFor="paymentStatus" className="text-[11px] font-black uppercase tracking-widest text-white/40">Pass Activation Status</Label>
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="paymentStatus" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Pass Activation Status</Label>
             <Select name="paymentStatus" value={paymentStatus} onValueChange={(v) => setPaymentStatus(v ?? "")}>
-              <SelectTrigger className="input-lux h-11"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue /></SelectTrigger>
               <SelectContent className="bg-[#121418] border-white/10">
                 <SelectItem value="PENDING" className="font-bold text-amber-500">PENDING AUDIT</SelectItem>
                 <SelectItem value="PAID" className="font-bold text-green-500">PAID & ACTIVE</SelectItem>
@@ -485,10 +485,10 @@ export function StudentFields({
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2.5">
-            <Label htmlFor="paymentMode" className="text-[11px] font-black uppercase tracking-widest text-white/40">Transaction Channel</Label>
+          <div className="space-y-2 md:space-y-2.5">
+            <Label htmlFor="paymentMode" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Transaction Channel</Label>
             <Select name="paymentMode" value={paymentMode} onValueChange={(v) => setPaymentMode(v ?? "")}>
-              <SelectTrigger className="input-lux h-11"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue /></SelectTrigger>
               <SelectContent className="bg-[#121418] border-white/10">
                 {["CASH", "CARD", "ONLINE", "SCHOLARSHIP"].map(m => <SelectItem key={m} value={m} className="font-bold">{m}</SelectItem>)}
               </SelectContent>

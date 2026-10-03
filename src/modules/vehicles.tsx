@@ -109,7 +109,7 @@ export function VehicleList({ vehicles }: { vehicles: VehicleWithRelations[] }) 
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredVehicles.length === 0 ? (
               <div className="col-span-full h-60 flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-3xl text-white/10">
@@ -180,47 +180,47 @@ function VehicleCard({
       )}
       onClick={onClick}
     >
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-6">
-          <div className="flex items-center gap-4 flex-1 min-w-0">
+      <div className="p-3 md:p-6">
+        <div className="flex items-start justify-between mb-3 md:mb-6">
+          <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
             <div className={cn(
-              "min-w-[48px] h-12 px-3 rounded-2xl flex flex-col items-center justify-center shrink-0 transition-all duration-500",
+              "min-w-[36px] md:min-w-[48px] h-9 md:h-12 px-2 md:px-3 rounded-xl md:rounded-2xl flex flex-col items-center justify-center shrink-0 transition-all duration-500",
               isSelected ? "bg-primary text-black" : "bg-white/5 text-primary group-hover:bg-primary/20"
             )}>
-              <span className="text-[9px] font-black uppercase opacity-60">Bus</span>
-              <span className="text-sm font-black -mt-1 whitespace-nowrap">{vehicle.BUS_NUMBER}</span>
+              <span className="text-[7px] md:text-[9px] font-black uppercase opacity-60">Bus</span>
+              <span className="text-xs md:text-sm font-black -mt-1 whitespace-nowrap">{vehicle.BUS_NUMBER}</span>
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-black tracking-tight text-white group-hover:text-primary transition-colors truncate whitespace-nowrap" title={vehicle.REGISTER_NUMBER || ""}>
+              <h3 className="text-xs md:text-sm font-black tracking-tight text-white group-hover:text-primary transition-colors truncate whitespace-nowrap" title={vehicle.REGISTER_NUMBER || ""}>
                 {vehicle.REGISTER_NUMBER || "NO OFFICIAL PLATE"}
               </h3>
-              <div className="flex items-center gap-2 mt-1">
-                <Badge className="text-[8px] font-black uppercase tracking-widest border px-2 py-0.5 bg-white/5 text-white/40 border-white/10 shrink-0">
+              <div className="flex items-center gap-1 md:gap-2 mt-0.5 md:mt-1">
+                <Badge className="text-[6px] md:text-[8px] font-black uppercase tracking-widest border px-1.5 md:px-2 py-[1px] md:py-0.5 bg-white/5 text-white/40 border-white/10 shrink-0">
                   {vehicle.FUEL_TYPE}
                 </Badge>
               </div>
             </div>
           </div>
-          <Checkbox checked={isSelected} onChange={(e) => onSelect(e as any)} className="border-white/10" />
+          <Checkbox checked={isSelected} onChange={(e) => onSelect(e as any)} className="border-white/10 w-4 h-4 md:w-5 md:h-5" />
         </div>
 
-        <div className="space-y-4">
-          <div className="bg-black/20 rounded-2xl p-4 border border-white/5">
-            <div className="flex items-center justify-between text-[9px] font-black uppercase tracking-widest text-white/20 mb-2">
+        <div className="space-y-3 md:space-y-4">
+          <div className="bg-black/20 rounded-xl md:rounded-2xl p-2.5 md:p-4 border border-white/5">
+            <div className="flex items-center justify-between text-[7px] md:text-[9px] font-black uppercase tracking-widest text-white/20 mb-1 md:mb-2">
               <span>Assigned Route</span>
-              <MapPinned size={10} />
+              <MapPinned className="w-2.5 h-2.5 md:w-3 md:h-3" />
             </div>
-            <p className="text-xs font-bold text-white truncate">{vehicle.routes[0]?.NAME || "Route Not Assigned"}</p>
+            <p className="text-[10px] md:text-xs font-bold text-white truncate">{vehicle.routes[0]?.NAME || "Route Not Assigned"}</p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5 md:gap-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Users size={12} className="text-white/20" />
-                <span className="text-xs font-black text-white">{vehicle._count.students}</span>
-                <span className="text-[10px] font-bold text-white/20">/ {isAllocated ? vehicle.CAPACITY : "NA"}</span>
+              <div className="flex items-center gap-1 md:gap-2">
+                <Users className="w-2.5 h-2.5 md:w-3 md:h-3 text-white/20" />
+                <span className="text-[10px] md:text-xs font-black text-white">{vehicle._count.students}</span>
+                <span className="text-[8px] md:text-[10px] font-bold text-white/20">/ {isAllocated ? vehicle.CAPACITY : "NA"}</span>
               </div>
-              <span className="text-[10px] font-black text-primary">CAPACITY: {vehicle.CAPACITY}</span>
+              <span className="text-[8px] md:text-[10px] font-black text-primary">CAPACITY: {vehicle.CAPACITY}</span>
             </div>
             <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
               <motion.div 
@@ -232,8 +232,8 @@ function VehicleCard({
           </div>
         </div>
 
-        <div className="mt-4 flex justify-end">
-          <ChevronRight size={16} className="text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+        <div className="mt-3 md:mt-4 flex justify-end">
+          <ChevronRight className="w-3 h-3 md:w-4 md:h-4 text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </div>
       </div>
     </motion.div>
@@ -402,31 +402,31 @@ export function VehicleForm() {
     <div className="flex flex-col gap-6 md:gap-8 max-w-4xl mx-auto w-full page-enter">
       <div className="flex items-center gap-3 md:gap-5">
         <Link href="/vehicles">
-          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
+          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-xl md:rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
             <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </Link>
         <div>
           <h1 className="text-display-lux text-xl md:text-3xl">Add New Vehicle</h1>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-[9px] md:text-[10px] mt-0.5">Vehicle Registration</p>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-[8px] md:text-[10px] mt-0.5">Vehicle Registration</p>
         </div>
       </div>
 
       <div className="panel-lux p-4 md:p-8 border-white/10">
-        <form action={createVehicle} onSubmit={() => setLoading(true)} className="space-y-8 md:space-y-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-5 md:gap-y-8">
-            <div className="space-y-2.5">
-              <Label htmlFor="number" className="text-[11px] font-black uppercase tracking-widest text-white/40">Bus Number (Identifier)</Label>
-              <Input id="number" name="number" placeholder="e.g. 1" className="input-lux h-12" required />
+        <form action={createVehicle} onSubmit={() => setLoading(true)} className="space-y-6 md:space-y-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-4 md:gap-y-8">
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="number" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Bus Number (Identifier)</Label>
+              <Input id="number" name="number" placeholder="e.g. 1" className="input-lux h-11 md:h-12" required />
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="registrationNumber" className="text-[11px] font-black uppercase tracking-widest text-white/40">Official Registration Number</Label>
-              <Input id="registrationNumber" name="registrationNumber" placeholder="e.g. TN 01 AA 1111" className="input-lux h-12" required />
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="registrationNumber" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Official Registration Number</Label>
+              <Input id="registrationNumber" name="registrationNumber" placeholder="e.g. TN 01 AA 1111" className="input-lux h-11 md:h-12" required />
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="fuelType" className="text-[11px] font-black uppercase tracking-widest text-white/40">Fuel Type</Label>
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="fuelType" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Fuel Type</Label>
               <Select name="fuelType" required defaultValue="DIESEL">
-                <SelectTrigger className="input-lux h-12"><SelectValue placeholder="Select class" /></SelectTrigger>
+                <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue placeholder="Select class" /></SelectTrigger>
                 <SelectContent className="bg-[#121418] border-white/10">
                   <SelectItem value="DIESEL" className="font-bold">DIESEL (Institutional)</SelectItem>
                   <SelectItem value="CNG" className="font-bold">CNG (Eco-Class)</SelectItem>
@@ -434,10 +434,10 @@ export function VehicleForm() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="status" className="text-[11px] font-black uppercase tracking-widest text-white/40">Operational Status</Label>
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="status" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Operational Status</Label>
               <Select name="status" defaultValue="ACTIVE">
-                <SelectTrigger className="input-lux h-12"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="input-lux h-11 md:h-12"><SelectValue /></SelectTrigger>
                 <SelectContent className="bg-[#121418] border-white/10">
                   <SelectItem value="ACTIVE" className="font-bold text-green-500">ACTIVE</SelectItem>
                   <SelectItem value="MAINTENANCE" className="font-bold text-amber-500">MAINTENANCE</SelectItem>
@@ -446,30 +446,30 @@ export function VehicleForm() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="make" className="text-[11px] font-black uppercase tracking-widest text-white/40">Vehicle Model (Make)</Label>
-              <Input id="make" name="make" placeholder="e.g. Tata Motors" className="input-lux h-12" />
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="make" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Vehicle Model (Make)</Label>
+              <Input id="make" name="make" placeholder="e.g. Tata Motors" className="input-lux h-11 md:h-12" />
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="model" className="text-[11px] font-black uppercase tracking-widest text-white/40">Model Variant</Label>
-              <Input id="model" name="model" placeholder="e.g. Starbus" className="input-lux h-12" />
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="model" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Model Variant</Label>
+              <Input id="model" name="model" placeholder="e.g. Starbus" className="input-lux h-11 md:h-12" />
             </div>
-            <div className="space-y-2.5">
-              <Label htmlFor="capacity" className="text-[11px] font-black uppercase tracking-widest text-white/40">Seating Capacity</Label>
-              <Input id="capacity" name="capacity" type="number" placeholder="e.g. 40" className="input-lux h-12" required />
+            <div className="space-y-2 md:space-y-2.5">
+              <Label htmlFor="capacity" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Seating Capacity</Label>
+              <Input id="capacity" name="capacity" type="number" placeholder="e.g. 40" className="input-lux h-11 md:h-12" required />
             </div>
           </div>
 
           <div className="pt-6 md:pt-10 border-t border-white/5">
-            <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8">Driver Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-5 md:gap-y-8">
-              <div className="space-y-2.5">
-                <Label htmlFor="driverName" className="text-[11px] font-black uppercase tracking-widest text-white/40">Driver Name</Label>
-                <Input id="driverName" name="driverName" placeholder="Staff Name" className="input-lux h-12" />
+            <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-4 md:mb-8">Driver Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-4 md:gap-y-8">
+              <div className="space-y-2 md:space-y-2.5">
+                <Label htmlFor="driverName" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Driver Name</Label>
+                <Input id="driverName" name="driverName" placeholder="Staff Name" className="input-lux h-11 md:h-12" />
               </div>
-              <div className="space-y-2.5">
-                <Label htmlFor="driverPhone" className="text-[11px] font-black uppercase tracking-widest text-white/40">Contact Verification</Label>
-                <Input id="driverPhone" name="driverPhone" placeholder="Verification ID / Phone" className="input-lux h-12" />
+              <div className="space-y-2 md:space-y-2.5">
+                <Label htmlFor="driverPhone" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Contact Verification</Label>
+                <Input id="driverPhone" name="driverPhone" placeholder="Verification ID / Phone" className="input-lux h-11 md:h-12" />
               </div>
             </div>
           </div>

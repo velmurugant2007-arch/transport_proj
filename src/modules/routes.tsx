@@ -116,7 +116,7 @@ export function RouteList({ routes }: { routes: RouteWithRelations[] }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredRoutes.length === 0 ? (
               <div className="col-span-full h-60 flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-3xl text-white/10">
@@ -184,50 +184,50 @@ function RouteCard({
       )}
       onClick={onClick}
     >
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-6">
-          <div className="flex items-center gap-4">
+      <div className="p-3 md:p-6">
+        <div className="flex items-start justify-between mb-4 md:mb-6">
+          <div className="flex items-center gap-2 md:gap-4">
             <div className={cn(
-              "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500",
+              "w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500",
               isSelected ? "bg-primary text-black" : "bg-white/5 text-primary group-hover:bg-primary/20"
             )}>
-              <Navigation size={24} />
+              <Navigation className="w-4 h-4 md:w-6 md:h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-black tracking-tight text-white group-hover:text-primary transition-colors">
+              <h3 className="text-sm md:text-lg font-black tracking-tight text-white group-hover:text-primary transition-colors line-clamp-1">
                 {route.NAME}
               </h3>
-              <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
+              <p className="text-[8px] md:text-[10px] font-bold text-white/30 uppercase tracking-widest line-clamp-1">
                 {route.stops.length} Boarding Points
               </p>
             </div>
           </div>
-          <Checkbox checked={isSelected} onChange={(e) => onSelect(e as any)} className="border-white/10" />
+          <Checkbox checked={isSelected} onChange={(e) => onSelect(e as any)} className="border-white/10 w-4 h-4 md:w-5 md:h-5" />
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          <div className="bg-black/20 rounded-2xl p-3 border border-white/5">
-            <p className="text-[8px] font-black uppercase text-white/20 mb-1">Student Count</p>
-            <div className="flex items-center gap-2">
-              <Users size={12} className="text-primary" />
-              <span className="text-xs font-black text-white">{route.students.length}</span>
+        <div className="grid grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
+          <div className="bg-black/20 rounded-xl md:rounded-2xl p-2 md:p-3 border border-white/5">
+            <p className="text-[7px] md:text-[8px] font-black uppercase text-white/20 mb-0.5 md:mb-1">Student Count</p>
+            <div className="flex items-center gap-1 md:gap-2">
+              <Users className="w-2.5 h-2.5 md:w-3 md:h-3 text-primary" />
+              <span className="text-[10px] md:text-xs font-black text-white">{route.students.length}</span>
             </div>
           </div>
-          <div className="bg-black/20 rounded-2xl p-3 border border-white/5">
-            <p className="text-[8px] font-black uppercase text-white/20 mb-1">Assigned Buses</p>
-            <div className="flex items-center gap-2">
-              <Bus size={12} className="text-primary" />
-              <span className="text-xs font-black text-white">{route.assignedBuses.length}</span>
+          <div className="bg-black/20 rounded-xl md:rounded-2xl p-2 md:p-3 border border-white/5">
+            <p className="text-[7px] md:text-[8px] font-black uppercase text-white/20 mb-0.5 md:mb-1">Assigned Buses</p>
+            <div className="flex items-center gap-1 md:gap-2">
+              <Bus className="w-2.5 h-2.5 md:w-3 md:h-3 text-primary" />
+              <span className="text-[10px] md:text-xs font-black text-white">{route.assignedBuses.length}</span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-white/5">
-          <div className="flex items-center gap-2 text-[10px] font-bold text-white/40">
-            <MapPinned size={10} />
+        <div className="flex items-center justify-between pt-3 md:pt-4 border-t border-white/5">
+          <div className="flex items-center gap-1 md:gap-2 text-[8px] md:text-[10px] font-bold text-white/40">
+            <MapPinned className="w-2.5 h-2.5 md:w-3 md:h-3" />
             <span>{route.DISTANCE} KM Network</span>
           </div>
-          <ChevronRight size={16} className="text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+          <ChevronRight className="w-3 h-3 md:w-4 md:h-4 text-white/20 group-hover:text-primary group-hover:translate-x-1 transition-all" />
         </div>
       </div>
     </motion.div>
@@ -401,50 +401,50 @@ export function RouteForm() {
   const removeStop = (idx: number) => setStops(stops.filter((_, i) => i !== idx));
 
   return (
-    <div className="flex flex-col gap-8 max-w-5xl mx-auto w-full page-enter">
-      <div className="flex items-center gap-5">
+    <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto w-full page-enter">
+      <div className="flex items-center gap-3 md:gap-5">
         <Link href="/routes">
-          <Button variant="outline" size="icon" className="h-12 w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-xl md:rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
+            <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-display-lux text-3xl">Route Management</h1>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Manage bus routes and boarding points</p>
+          <h1 className="text-display-lux text-xl md:text-3xl">Route Management</h1>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-[8px] md:text-[10px] mt-0.5">Manage bus routes and boarding points</p>
         </div>
       </div>
 
-      <div className="panel-lux p-8 border-white/10">
-        <form action={createRoute} onSubmit={() => setLoading(true)} className="space-y-12">
+      <div className="panel-lux p-4 md:p-8 border-white/10">
+        <form action={createRoute} onSubmit={() => setLoading(true)} className="space-y-8 md:space-y-12">
           {/* Core Route Info */}
-          <section className="space-y-8">
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary flex items-center gap-3">
-              <Navigation size={18} /> Route Details
+          <section className="space-y-5 md:space-y-8">
+            <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2 md:gap-3">
+              <Navigation size={16} className="md:w-[18px] md:h-[18px]" /> Route Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="space-y-2.5">
-                <Label htmlFor="name" className="text-[11px] font-black uppercase tracking-widest text-white/40">Route Name</Label>
-                <Input id="name" name="name" placeholder="e.g. Dindigul Central Express" className="input-lux h-12" required />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
+              <div className="space-y-2 md:space-y-2.5">
+                <Label htmlFor="name" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Route Name</Label>
+                <Input id="name" name="name" placeholder="e.g. Dindigul Central Express" className="input-lux h-11 md:h-12" required />
               </div>
-              <div className="space-y-2.5">
-                <Label htmlFor="description" className="text-[11px] font-black uppercase tracking-widest text-white/40">Route Description</Label>
-                <Input id="description" name="description" placeholder="e.g. Covering Main Road & Bus Stand" className="input-lux h-12" />
+              <div className="space-y-2 md:space-y-2.5">
+                <Label htmlFor="description" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Route Description</Label>
+                <Input id="description" name="description" placeholder="e.g. Covering Main Road & Bus Stand" className="input-lux h-11 md:h-12" />
               </div>
-              <div className="space-y-2.5">
-                <Label htmlFor="distance" className="text-[11px] font-black uppercase tracking-widest text-white/40">Total Distance (KM)</Label>
-                <Input id="distance" name="distance" type="number" step="0.1" placeholder="e.g. 25.5" className="input-lux h-12" />
+              <div className="space-y-2 md:space-y-2.5">
+                <Label htmlFor="distance" className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-white/40">Total Distance (KM)</Label>
+                <Input id="distance" name="distance" type="number" step="0.1" placeholder="e.g. 25.5" className="input-lux h-11 md:h-12" />
               </div>
             </div>
           </section>
 
           {/* Stop Infrastructure */}
-          <section className="space-y-8 pt-10 border-t border-white/5">
+          <section className="space-y-5 md:space-y-8 pt-6 md:pt-10 border-t border-white/5">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary flex items-center gap-3">
-                <Layers size={18} /> Boarding Points
+              <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2 md:gap-3">
+                <Layers size={16} className="md:w-[18px] md:h-[18px]" /> Boarding Points
               </h3>
-              <Button type="button" onClick={addStop} variant="outline" className="h-10 rounded-xl border-primary/20 bg-primary/5 text-primary hover:bg-primary/10">
-                <PlusCircle className="mr-2 h-4 w-4" /> Add Boarding Point
+              <Button type="button" onClick={addStop} variant="outline" className="h-8 md:h-10 text-[10px] md:text-sm px-3 md:px-4 rounded-lg md:rounded-xl border-primary/20 bg-primary/5 text-primary hover:bg-primary/10">
+                <PlusCircle className="mr-1 md:mr-2 h-3 w-3 md:h-4 md:w-4" /> Add <span className="hidden md:inline">&nbsp;Boarding Point</span>
               </Button>
             </div>
             

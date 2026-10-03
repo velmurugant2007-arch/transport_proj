@@ -91,11 +91,11 @@ function MetricCard({
         }}
       />
       <div className="relative">
-        <div className="flex items-start justify-between mb-4">
-          <div className={`w-10 h-10 flex items-center justify-center shrink-0 ${iconClass}`} style={{ borderRadius:"12px" }}>
-            <Icon className="h-5 w-5" strokeWidth={2} />
+        <div className="flex items-start justify-between mb-3 md:mb-4">
+          <div className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shrink-0 ${iconClass}`} style={{ borderRadius:"12px" }}>
+            <Icon className="h-4 w-4 md:h-5 md:w-5" strokeWidth={2} />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 md:gap-2">
             {trend && trendLabel && (
               <div
                 className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold"
@@ -106,20 +106,20 @@ function MetricCard({
                 }}
               >
                 {trend === "up"
-                  ? <ArrowUpRight className="h-3 w-3" />
-                  : <ArrowDownRight className="h-3 w-3" />
+                  ? <ArrowUpRight className="h-2.5 w-2.5 md:h-3 md:w-3" />
+                  : <ArrowDownRight className="h-2.5 w-2.5 md:h-3 md:w-3" />
                 }
                 {trendLabel}
               </div>
             )}
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="hidden md:block opacity-0 group-hover:opacity-100 transition-opacity">
               <ArrowUpRight className="h-4 w-4 text-primary" />
             </div>
           </div>
         </div>
-        <p className="text-metric-lux mb-1">{value}</p>
-        <p className="text-label-lux uppercase tracking-widest font-black" style={{ fontSize:"11px" }}>{label}</p>
-        {sub && <p className="text-meta-lux mt-0.5">{sub}</p>}
+        <p className="text-2xl md:text-metric-lux font-black text-white mb-0.5 md:mb-1">{value}</p>
+        <p className="text-label-lux uppercase tracking-widest font-black text-[9px] md:text-[11px] text-white/50">{label}</p>
+        {sub && <p className="text-[10px] md:text-meta-lux mt-0.5 md:mt-0.5 text-white/30">{sub}</p>}
       </div>
     </div>
   );
@@ -155,7 +155,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         <MetricCard
           label="TOTAL BUSSES" value={s.totalVehicles} sub={`${s.activeVehicles} operational units`}
           icon={BusFront} iconClass="icon-orange-lux"
