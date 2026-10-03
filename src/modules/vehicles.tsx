@@ -66,12 +66,12 @@ export function VehicleList({ vehicles }: { vehicles: VehicleWithRelations[] }) 
   return (
     <>
       <div className="flex flex-col gap-6 relative page-enter pb-32">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-display-lux text-3xl">Bus Management</h1>
+            <h1 className="text-display-lux text-2xl md:text-3xl">Bus Management</h1>
             <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Vehicle Management</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3">
             <ExportMenu 
               data={vehicles}
               filename="fleet_inventory"
@@ -81,15 +81,15 @@ export function VehicleList({ vehicles }: { vehicles: VehicleWithRelations[] }) 
             />
             <ImportZone onImport={bulkImportVehicles} label="Import" />
             <Link href="/vehicles/new">
-              <Button className="btn-yellow-premium h-10 px-6 rounded-14">
-                <Plus className="mr-2 h-4.5 w-4.5" strokeWidth={3} /> Add Vehicle
+              <Button className="btn-yellow-premium h-10 px-4 md:px-6 rounded-14 text-xs md:text-sm">
+                <Plus className="mr-1.5 md:mr-2 h-4 w-4 md:h-4.5 md:w-4.5" strokeWidth={3} /> Add Vehicle
               </Button>
             </Link>
           </div>
         </div>
 
-        <div className="flex items-center justify-between bg-white/[0.02] p-4 rounded-2xl border border-white/5">
-          <div className="relative w-full max-w-sm group">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white/[0.02] p-4 rounded-2xl border border-white/5">
+          <div className="relative w-full md:max-w-sm group">
             <Search className="absolute left-3.5 top-3 h-4 w-4 text-white/30 group-focus-within:text-primary transition-colors" />
             <Input
               placeholder="Search by bus number or registration..."

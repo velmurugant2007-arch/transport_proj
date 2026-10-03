@@ -85,12 +85,12 @@ export function DocumentList({ vehicles }: { vehicles: VehicleDoc[] }) {
   return (
     <div className="flex flex-col gap-8 page-enter pb-20">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-display-lux text-3xl">Vehicle Documents</h1>
+          <h1 className="text-display-lux text-2xl md:text-3xl">Vehicle Documents</h1>
           <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Vehicle Document Records</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 md:gap-3">
           {alertCount > 0 && (
             <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-12 bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-black uppercase tracking-widest animate-pulse">
               <AlertTriangle className="h-3.5 w-3.5" />
@@ -128,7 +128,7 @@ export function DocumentList({ vehicles }: { vehicles: VehicleDoc[] }) {
 
       {/* Summary metrics */}
       {vehicles.length > 0 && (
-        <div className="grid gap-4 grid-cols-2 sm:grid-cols-5">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-5">
           {[
             { label: "Insurance",    icon: Shield,    field: "INSURANCE_EXPIRY"  as const },
             { label: "Road Tax",     icon: Receipt,   field: "TAX_EXPIRY"        as const },
@@ -203,7 +203,7 @@ export function DocumentList({ vehicles }: { vehicles: VehicleDoc[] }) {
             return (
               <div key={vehicle.id} className={cn("panel-lux overflow-hidden transition-all duration-300", hasAlert ? "border-rose-500/20 shadow-[0_0_40px_rgba(239,68,68,0.05)]" : "border-white/5", selectedIds.includes(vehicle.id) && "border-primary bg-primary/5")}>
                 {/* Vehicle header */}
-                <div className="flex items-center justify-between px-6 py-4 bg-white/[0.02] border-b border-white/5">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center justify-between px-4 md:px-6 py-4 bg-white/[0.02] border-b border-white/5">
                   <div className="flex items-center gap-4">
                     <Checkbox 
                       checked={selectedIds.includes(vehicle.id)}
@@ -229,7 +229,7 @@ export function DocumentList({ vehicles }: { vehicles: VehicleDoc[] }) {
                 </div>
 
                 {/* Docs grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-5 divide-x divide-white/5 bg-white/[0.01]">
+                <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-white/5 bg-white/[0.01]">
                   {docs.map((doc) => {
                     const status = docStatus(doc.expiry);
                     const style = statusStyle[status];

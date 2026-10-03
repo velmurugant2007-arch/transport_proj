@@ -68,12 +68,12 @@ export function RouteList({ routes }: { routes: RouteWithRelations[] }) {
   return (
     <>
       <div className="flex flex-col gap-6 relative page-enter pb-32">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-display-lux text-3xl">Route Management</h1>
+            <h1 className="text-display-lux text-2xl md:text-3xl">Route Management</h1>
             <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Manage bus routes and boarding points</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3">
             <ExportMenu 
               data={routes.map(r => ({
                 ...r,
@@ -95,8 +95,8 @@ export function RouteList({ routes }: { routes: RouteWithRelations[] }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between bg-white/[0.02] p-4 rounded-2xl border border-white/5">
-          <div className="relative w-full max-w-sm group">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white/[0.02] p-4 rounded-2xl border border-white/5">
+          <div className="relative w-full md:max-w-sm group">
             <Search className="absolute left-3.5 top-3 h-4 w-4 text-white/30 group-focus-within:text-primary transition-colors" />
             <Input
               placeholder="Search routes..."

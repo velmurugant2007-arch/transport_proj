@@ -140,7 +140,7 @@ export default async function DashboardPage() {
     <div className="flex flex-col gap-8 page-enter pb-16">
 
       {/* Page heading */}
-      <div className="flex items-end justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-micro-lux mb-1.5 text-primary/80 font-black tracking-[0.3em]">TRANSPORT MANAGEMENT</p>
           <h1 className="text-h1-lux tracking-tighter">Overview</h1>
@@ -205,12 +205,13 @@ export default async function DashboardPage() {
             </div>
             <div className="badge-premium" style={{ borderColor: "#F4B400", color: "#FFFFFF" }}>{s.recentFuel.length} entries</div>
           </div>
-          <div className="p-2">
+          <div className="p-2 overflow-x-auto">
             {s.recentFuel.length === 0 ? (
               <div className="flex items-center justify-center py-20">
                 <p className="text-white/20 font-bold uppercase tracking-widest text-xs">No logistics records found</p>
               </div>
             ) : (
+              <div className="min-w-[600px]">
               <table className="w-full">
                 <thead>
                   <tr className="tbl-head">
@@ -235,6 +236,7 @@ export default async function DashboardPage() {
                   ))}
                 </tbody>
               </table>
+              </div>
             )}
           </div>
         </div>

@@ -69,12 +69,12 @@ export function StudentList({ students }: { students: any[] }) {
   return (
     <>
       <div className="flex flex-col gap-6 relative page-enter pb-32">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-display-lux text-3xl">Students</h1>
+            <h1 className="text-display-lux text-2xl md:text-3xl">Students</h1>
             <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Student Transport Records</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3">
             <ExportMenu 
               data={filtered}
               filename="student_records"
@@ -84,14 +84,14 @@ export function StudentList({ students }: { students: any[] }) {
             />
             <ImportZone onImport={bulkImportStudents} label="Import" />
             <Link href="/students/new">
-              <Button className="btn-yellow-premium h-10 px-6 rounded-14">
-                <Plus className="mr-2 h-4.5 w-4.5" strokeWidth={3} /> Add Student
+              <Button className="btn-yellow-premium h-10 px-4 md:px-6 rounded-14 text-xs md:text-sm">
+                <Plus className="mr-1.5 md:mr-2 h-4 w-4 md:h-4.5 md:w-4.5" strokeWidth={3} /> Add Student
               </Button>
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {stats.map((s, i) => (
             <div key={i} className="card-metric-lux">
               <div className="flex items-start justify-between">
@@ -107,7 +107,7 @@ export function StudentList({ students }: { students: any[] }) {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 max-w-sm">
+        <div className="flex items-center gap-2 w-full md:max-w-sm">
           <div className="relative w-full group">
             <Search className="absolute left-3.5 top-3 h-4 w-4 text-white/30 group-focus-within:text-primary transition-colors" />
             <Input
@@ -120,6 +120,8 @@ export function StudentList({ students }: { students: any[] }) {
         </div>
 
         <div className="panel-lux overflow-hidden">
+          <div className="overflow-x-auto">
+          <div className="min-w-[1200px]">
           <Table>
             <TableHeader className="tbl-head">
               <TableRow className="hover:bg-transparent border-white/5">
@@ -210,6 +212,8 @@ export function StudentList({ students }: { students: any[] }) {
               ))}
             </TableBody>
           </Table>
+          </div>
+          </div>
         </div>
       </div>
 

@@ -65,12 +65,12 @@ export function FuelList({ logs }: { logs: FuelLogWithVehicle[] }) {
 
   return (
     <div className="flex flex-col gap-6 relative page-enter pb-32">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-display-lux text-3xl">Fuel Records</h1>
+          <h1 className="text-display-lux text-2xl md:text-3xl">Fuel Records</h1>
           <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Institutional Consumption Registry</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 md:gap-3">
           <ExportMenu 
             data={logs.map(log => ({
               ...log,
@@ -114,7 +114,7 @@ export function FuelList({ logs }: { logs: FuelLogWithVehicle[] }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 max-w-sm">
+      <div className="flex items-center gap-2 w-full md:max-w-sm">
         <div className="relative w-full group">
           <Search className="absolute left-3.5 top-3 h-4 w-4 text-white/30 group-focus-within:text-primary transition-colors" />
           <Input
@@ -127,6 +127,8 @@ export function FuelList({ logs }: { logs: FuelLogWithVehicle[] }) {
       </div>
 
       <div className="panel-lux">
+        <div className="overflow-x-auto">
+        <div className="min-w-[1000px]">
         <Table>
           <TableHeader className="tbl-head">
             <TableRow className="hover:bg-transparent border-white/5">
@@ -210,6 +212,8 @@ export function FuelList({ logs }: { logs: FuelLogWithVehicle[] }) {
             )}
           </TableBody>
         </Table>
+        </div>
+        </div>
       </div>
 
       <BulkDeleteToolbar 
