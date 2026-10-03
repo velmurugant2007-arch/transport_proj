@@ -397,7 +397,7 @@ export default function RouteMapClient({ routes }: { routes: Route[] }) {
         </div>
 
         {/* Map Type Toggle (Top Left) */}
-        <div className="absolute left-6 top-6 z-[600] flex bg-[#121418]/90 backdrop-blur-xl border border-white/10 rounded-xl p-1 shadow-2xl">
+        <div className="absolute left-3 md:left-6 top-3 md:top-6 z-[600] flex bg-[#121418]/90 backdrop-blur-xl border border-white/10 rounded-xl p-1 shadow-2xl">
           <button 
             onClick={() => setMapType("map")}
             className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${mapType === "map" ? "bg-primary text-black shadow-lg" : "text-white/40 hover:text-white"}`}
@@ -413,21 +413,20 @@ export default function RouteMapClient({ routes }: { routes: Route[] }) {
         </div>
 
         {/* Bottom Navigation Pills */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[600] flex items-center gap-2 bg-[#121418]/80 backdrop-blur-2xl border border-white/10 rounded-2xl p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-[600] flex items-center gap-1 md:gap-2 bg-[#121418]/90 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-2xl p-1 md:p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-[calc(100%-2rem)]">
           {[
             { id: "home",   icon: Navigation, label: "Home",   action: () => router.push("/dashboard") },
             { id: "routes", icon: Filter,     label: "Routes", action: () => router.push("/routes") },
             { id: "buses",  icon: Bus,        label: "Buses",  action: () => router.push("/vehicles") },
             { id: "stops",  icon: MapPin,     label: "Stops",  action: () => router.push("/students") },
-            { id: "layers", icon: Fuel,       label: "Layers", action: () => setMapType(mapType === "satellite" ? "map" : "satellite") },
           ].map(item => (
             <button 
               key={item.id} 
               onClick={item.action}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl transition-all ${item.id === "home" ? "bg-primary/10 text-primary border border-primary/20" : "text-white/40 hover:text-white/70 hover:bg-white/5"}`}
+              className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl transition-all ${item.id === "home" ? "bg-primary/10 text-primary border border-primary/20" : "text-white/40 hover:text-white/70 hover:bg-white/5"}`}
             >
-              <item.icon size={14} />
-              <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
+              <item.icon size={13} />
+              <span className="text-[8px] md:text-[10px] font-black uppercase tracking-wider md:tracking-widest">{item.label}</span>
             </button>
           ))}
         </div>
@@ -445,8 +444,8 @@ export default function RouteMapClient({ routes }: { routes: Route[] }) {
 
         {/* Bus Side Panel */}
         {selectedBus && (
-          <div className="absolute right-6 top-6 bottom-6 z-[600] w-[380px] shadow-2xl transition-all duration-500 transform translate-x-0 overflow-hidden flex flex-col"
-               style={{ fontFamily:"system-ui", background:"rgba(12,14,18,0.88)", backdropFilter:"blur(32px)", borderRadius:"32px", border:`1px solid rgba(255,255,255,0.12)`, boxShadow:"0 40px 100px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(255,255,255,0.05)" }}>
+          <div className="absolute right-2 md:right-6 top-2 md:top-6 bottom-2 md:bottom-6 z-[600] w-[calc(100%-1rem)] md:w-[380px] shadow-2xl transition-all duration-500 transform translate-x-0 overflow-hidden flex flex-col"
+               style={{ fontFamily:"system-ui", background:"rgba(12,14,18,0.95)", backdropFilter:"blur(32px)", borderRadius:"20px", border:`1px solid rgba(255,255,255,0.12)`, boxShadow:"0 40px 100px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(255,255,255,0.05)" }}>
             
             {/* Header Image with fixed alignment */}
             <div className="h-[240px] relative shrink-0 bg-[#0c0e12] flex items-center justify-center overflow-hidden">

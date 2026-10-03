@@ -254,57 +254,57 @@ function VehicleDetailView({ vehicle, onClose }: { vehicle: VehicleWithRelations
     >
       <div className="h-full flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="p-8 border-b border-white/5 bg-white/[0.02]">
-          <div className="flex items-center justify-between mb-8">
-            <Button variant="ghost" onClick={onClose} className="h-10 rounded-full hover:bg-white/5 text-white/40">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Close Operations
+        <div className="p-4 md:p-8 border-b border-white/5 bg-white/[0.02]">
+          <div className="flex items-center justify-between mb-4 md:mb-8">
+            <Button variant="ghost" onClick={onClose} className="h-9 md:h-10 rounded-full hover:bg-white/5 text-white/40 text-xs md:text-sm">
+              <ArrowLeft className="mr-1.5 md:mr-2 h-4 w-4" /> Close Operations
             </Button>
-            <div className="flex gap-3">
+            <div className="flex gap-2 md:gap-3">
               <Link href={`/vehicles/${vehicle.id}/edit`}>
-                <Button className="btn-yellow-premium h-10 rounded-12"><Edit className="h-4 w-4 mr-2" /> Edit Vehicle</Button>
+                <Button className="btn-yellow-premium h-9 md:h-10 rounded-12 text-xs"><Edit className="h-3.5 w-3.5 md:h-4 md:w-4 mr-1.5" /> Edit Vehicle</Button>
               </Link>
               <DeleteButton onDelete={async () => { await deleteVehicle(vehicle.id); onClose(); }} itemName={`Bus ${vehicle.BUS_NUMBER}`} />
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="min-w-[80px] h-20 px-4 rounded-3xl bg-primary flex flex-col items-center justify-center text-black shadow-[0_0_30px_rgba(244,180,0,0.2)] shrink-0">
-              <span className="text-xs font-black uppercase opacity-60">Bus</span>
-              <span className="text-2xl font-black -mt-1 whitespace-nowrap">{vehicle.BUS_NUMBER}</span>
+          <div className="flex items-center gap-4 md:gap-6">
+            <div className="min-w-[60px] md:min-w-[80px] h-16 md:h-20 px-3 md:px-4 rounded-2xl md:rounded-3xl bg-primary flex flex-col items-center justify-center text-black shadow-[0_0_30px_rgba(244,180,0,0.2)] shrink-0">
+              <span className="text-[9px] md:text-xs font-black uppercase opacity-60">Bus</span>
+              <span className="text-xl md:text-2xl font-black -mt-1 whitespace-nowrap">{vehicle.BUS_NUMBER}</span>
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-1">
-                <h2 className="text-3xl font-black text-white tracking-tight truncate whitespace-nowrap" title={vehicle.REGISTER_NUMBER || ""}>
+                <h2 className="text-lg md:text-3xl font-black text-white tracking-tight truncate" title={vehicle.REGISTER_NUMBER || ""}>
                   {vehicle.REGISTER_NUMBER || "NO OFFICIAL PLATE"}
                 </h2>
               </div>
-              <p className="text-sm font-bold text-white/40 uppercase tracking-widest">Official Registration ID</p>
+              <p className="text-[10px] md:text-sm font-bold text-white/40 uppercase tracking-widest">Official Registration ID</p>
             </div>
           </div>
         </div>
 
         {/* Analytics Strip */}
         <div className="grid grid-cols-3 border-b border-white/5">
-          <div className="p-6 border-r border-white/5 flex flex-col items-center text-center">
-            <Users size={18} className="text-primary mb-2 opacity-50" />
-            <p className="text-[9px] font-black text-white/30 uppercase tracking-widest mb-1">Seat Occupancy</p>
-            <p className="text-xl font-black text-white">{vehicle._count.students} / {vehicle.CAPACITY}</p>
+          <div className="p-3 md:p-6 border-r border-white/5 flex flex-col items-center text-center">
+            <Users size={16} className="text-primary mb-1.5 md:mb-2 opacity-50" />
+            <p className="text-[8px] md:text-[9px] font-black text-white/30 uppercase tracking-widest mb-0.5 md:mb-1">Seat Occupancy</p>
+            <p className="text-sm md:text-xl font-black text-white">{vehicle._count.students} / {vehicle.CAPACITY}</p>
           </div>
-          <div className="p-6 border-r border-white/5 flex flex-col items-center text-center">
-            <Fuel size={18} className="text-primary mb-2 opacity-50" />
-            <p className="text-[9px] font-black text-white/30 uppercase tracking-widest mb-1">Fuel Type</p>
-            <p className="text-xl font-black text-white">{vehicle.FUEL_TYPE}</p>
+          <div className="p-3 md:p-6 border-r border-white/5 flex flex-col items-center text-center">
+            <Fuel size={16} className="text-primary mb-1.5 md:mb-2 opacity-50" />
+            <p className="text-[8px] md:text-[9px] font-black text-white/30 uppercase tracking-widest mb-0.5 md:mb-1">Fuel Type</p>
+            <p className="text-xs md:text-xl font-black text-white truncate max-w-full px-1">{vehicle.FUEL_TYPE}</p>
           </div>
-          <div className="p-6 flex flex-col items-center text-center">
-            <Settings2 size={18} className="text-primary mb-2 opacity-50" />
-            <p className="text-[9px] font-black text-white/30 uppercase tracking-widest mb-1">Model / Variant</p>
-            <p className="text-xl font-black text-white truncate max-w-full">
-              {(!vehicle.MAKE && !vehicle.MODEL) ? "Institutional" : `${vehicle.MAKE || ""} ${vehicle.MODEL || ""}`.trim()}
+          <div className="p-3 md:p-6 flex flex-col items-center text-center">
+            <Settings2 size={16} className="text-primary mb-1.5 md:mb-2 opacity-50" />
+            <p className="text-[8px] md:text-[9px] font-black text-white/30 uppercase tracking-widest mb-0.5 md:mb-1">Model</p>
+            <p className="text-xs md:text-xl font-black text-white truncate max-w-full px-1">
+              {(!vehicle.MAKE && !vehicle.MODEL) ? "Standard" : `${vehicle.MAKE || ""} ${vehicle.MODEL || ""}`.trim()}
             </p>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 space-y-10">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 md:space-y-10">
           {/* Operational Sector */}
           <section className="space-y-4">
             <h4 className="text-[11px] font-black uppercase tracking-[0.2em] text-white/30 flex items-center gap-2">
@@ -399,22 +399,22 @@ function VehicleDetailView({ vehicle, onClose }: { vehicle: VehicleWithRelations
 export function VehicleForm() {
   const [loading, setLoading] = useState(false);
   return (
-    <div className="flex flex-col gap-8 max-w-4xl mx-auto w-full page-enter">
-      <div className="flex items-center gap-5">
+    <div className="flex flex-col gap-6 md:gap-8 max-w-4xl mx-auto w-full page-enter">
+      <div className="flex items-center gap-3 md:gap-5">
         <Link href="/vehicles">
-          <Button variant="outline" size="icon" className="h-12 w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
+            <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-display-lux text-3xl">Add New Vehicle</h1>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Vehicle Registration</p>
+          <h1 className="text-display-lux text-xl md:text-3xl">Add New Vehicle</h1>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-[9px] md:text-[10px] mt-0.5">Vehicle Registration</p>
         </div>
       </div>
 
-      <div className="panel-lux p-8 border-white/10">
-        <form action={createVehicle} onSubmit={() => setLoading(true)} className="space-y-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+      <div className="panel-lux p-4 md:p-8 border-white/10">
+        <form action={createVehicle} onSubmit={() => setLoading(true)} className="space-y-8 md:space-y-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-5 md:gap-y-8">
             <div className="space-y-2.5">
               <Label htmlFor="number" className="text-[11px] font-black uppercase tracking-widest text-white/40">Bus Number (Identifier)</Label>
               <Input id="number" name="number" placeholder="e.g. 1" className="input-lux h-12" required />
@@ -460,9 +460,9 @@ export function VehicleForm() {
             </div>
           </div>
 
-          <div className="pt-10 border-t border-white/5">
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-8">Driver Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="pt-6 md:pt-10 border-t border-white/5">
+            <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8">Driver Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-5 md:gap-y-8">
               <div className="space-y-2.5">
                 <Label htmlFor="driverName" className="text-[11px] font-black uppercase tracking-widest text-white/40">Driver Name</Label>
                 <Input id="driverName" name="driverName" placeholder="Staff Name" className="input-lux h-12" />
@@ -474,11 +474,11 @@ export function VehicleForm() {
             </div>
           </div>
 
-          <div className="flex justify-end gap-4 pt-6">
+          <div className="flex flex-col-reverse md:flex-row md:justify-end gap-3 md:gap-4 pt-6">
             <Link href="/vehicles">
-              <Button variant="ghost" type="button" className="h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
+              <Button variant="ghost" type="button" className="w-full md:w-auto h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
             </Link>
-            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 min-w-[200px]">
+            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 w-full md:w-auto md:min-w-[200px]">
               {loading ? "Processing..." : "Add Vehicle"}
             </Button>
           </div>
@@ -493,22 +493,22 @@ export function VehicleEditForm({ vehicle }: { vehicle: Vehicle }) {
   const [loading, setLoading] = useState(false);
   const action = updateVehicle.bind(null, vehicle.id);
   return (
-    <div className="flex flex-col gap-8 max-w-4xl mx-auto w-full page-enter">
-      <div className="flex items-center gap-5">
+    <div className="flex flex-col gap-6 md:gap-8 max-w-4xl mx-auto w-full page-enter">
+      <div className="flex items-center gap-3 md:gap-5">
         <Link href="/vehicles">
-          <Button variant="outline" size="icon" className="h-12 w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
+            <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-display-lux text-3xl">Edit Vehicle</h1>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Update Details: Bus {vehicle.BUS_NUMBER}</p>
+          <h1 className="text-display-lux text-xl md:text-3xl">Edit Vehicle</h1>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-[9px] md:text-[10px] mt-0.5">Update Details: Bus {vehicle.BUS_NUMBER}</p>
         </div>
       </div>
 
-      <div className="panel-lux p-8 border-white/10">
-        <form action={action} onSubmit={() => setLoading(true)} className="space-y-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+      <div className="panel-lux p-4 md:p-8 border-white/10">
+        <form action={action} onSubmit={() => setLoading(true)} className="space-y-8 md:space-y-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-5 md:gap-y-8">
             <div className="space-y-2.5">
               <Label htmlFor="number" className="text-[11px] font-black uppercase tracking-widest text-white/40">Bus Number</Label>
               <Input id="number" name="number" defaultValue={vehicle.BUS_NUMBER} className="input-lux h-12" required />
@@ -562,11 +562,11 @@ export function VehicleEditForm({ vehicle }: { vehicle: Vehicle }) {
             </div>
           </div>
 
-          <div className="flex justify-end gap-4 pt-6 border-t border-white/5">
+          <div className="flex flex-col-reverse md:flex-row md:justify-end gap-3 md:gap-4 pt-6 border-t border-white/5">
             <Link href="/vehicles">
-              <Button variant="ghost" type="button" className="h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
+              <Button variant="ghost" type="button" className="w-full md:w-auto h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
             </Link>
-            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 min-w-[200px]">
+            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 w-full md:w-auto md:min-w-[200px]">
               {loading ? "Processing..." : "Save Changes"}
             </Button>
           </div>

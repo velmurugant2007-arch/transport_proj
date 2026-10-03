@@ -348,13 +348,13 @@ export function StudentFields({
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8 md:space-y-12">
       {/* Identity Group */}
       <section>
-        <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-8 flex items-center gap-3">
-          <User size={18} /> Student Identity
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+          <User size={16} className="md:w-[18px] md:h-[18px]" /> Student Identity
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-8 md:gap-8">
           <div className="space-y-2.5">
             <Label htmlFor="name" className="text-[11px] font-black uppercase tracking-widest text-white/40">Full Legal Name</Label>
             <Input id="name" name="name" defaultValue={defaults.STUDENT_NAME} placeholder="e.g. Adithya V" className="input-lux h-11" required />
@@ -371,11 +371,11 @@ export function StudentFields({
       </section>
 
       {/* Academic Group */}
-      <section className="pt-10 border-t border-white/5">
-        <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-8 flex items-center gap-3">
-          <GraduationCap size={18} /> Academic Context
+      <section className="pt-6 md:pt-10 border-t border-white/5">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+          <GraduationCap size={16} className="md:w-[18px] md:h-[18px]" /> Academic Context
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-y-5 gap-x-8 md:gap-8">
           <div className="space-y-2.5">
             <Label htmlFor="year" className="text-[11px] font-black uppercase tracking-widest text-white/40">Year of Study</Label>
             <Select name="year" defaultValue={defaults.YEAR || "1st"}>
@@ -397,11 +397,11 @@ export function StudentFields({
       </section>
 
       {/* Transportation Group */}
-      <section className="pt-10 border-t border-white/5">
-        <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-8 flex items-center gap-3">
-          <Bus size={18} /> Logistics Allocation
+      <section className="pt-6 md:pt-10 border-t border-white/5">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+          <Bus size={16} className="md:w-[18px] md:h-[18px]" /> Logistics Allocation
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-10 md:gap-10">
           <div className="space-y-8">
             <div className="space-y-2.5">
               <Label className="text-[11px] font-black uppercase tracking-widest text-white/40">Strategic Route</Label>
@@ -465,11 +465,11 @@ export function StudentFields({
       </section>
 
       {/* Financial Group */}
-      <section className="pt-10 border-t border-white/5">
-        <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-8 flex items-center gap-3">
-          <CreditCard size={18} /> Financial Protocol
+      <section className="pt-6 md:pt-10 border-t border-white/5">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+          <CreditCard size={16} className="md:w-[18px] md:h-[18px]" /> Financial Protocol
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-8 md:gap-8">
           <div className="space-y-2.5">
             <Label htmlFor="amount" className="text-[11px] font-black uppercase tracking-widest text-white/40">Annual Fee (₹)</Label>
             <Input id="amount" name="amount" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} className="input-lux h-11 font-black text-white" required />
@@ -498,11 +498,11 @@ export function StudentFields({
       </section>
 
       {/* Office Archiving Section */}
-      <section className="pt-10 border-t border-white/5">
-        <h3 className="text-sm font-black uppercase tracking-[0.2em] text-primary mb-8 flex items-center gap-3">
-          <Layers size={18} /> Office Archiving
+      <section className="pt-6 md:pt-10 border-t border-white/5">
+        <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.2em] text-primary mb-5 md:mb-8 flex items-center gap-2 md:gap-3">
+          <Layers size={16} className="md:w-[18px] md:h-[18px]" /> Office Archiving
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-8 md:gap-8">
           <div className="space-y-2.5">
             <Label htmlFor="order" className="text-[11px] font-black uppercase tracking-widest text-white/40">Archive Order</Label>
             <Input id="order" name="order" value={order} onChange={(e) => setOrder(e.target.value)} placeholder="e.g. 001" className="input-lux h-11" />
@@ -520,27 +520,27 @@ export function StudentFields({
 export function StudentForm({ routes, vehicles }: { routes: any[]; vehicles: any[] }) {
   const [loading, setLoading] = useState(false);
   return (
-    <div className="flex flex-col gap-8 max-w-5xl mx-auto w-full page-enter">
-      <div className="flex items-center gap-5">
+    <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto w-full page-enter">
+      <div className="flex items-center gap-3 md:gap-5">
         <Link href="/students">
-          <Button variant="outline" size="icon" className="h-12 w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
+            <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-display-lux text-3xl">Add Student</h1>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">New Enrollment</p>
+          <h1 className="text-display-lux text-xl md:text-3xl">Add Student</h1>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-[9px] md:text-[10px] mt-0.5">New Enrollment</p>
         </div>
       </div>
 
-      <div className="panel-lux p-8 border-white/10">
+      <div className="panel-lux p-4 md:p-8 border-white/10">
         <form action={createStudent} onSubmit={() => setLoading(true)}>
           <StudentFields routes={routes} vehicles={vehicles} />
-          <div className="flex justify-end gap-4 mt-12 pt-8 border-t border-white/5">
+          <div className="flex flex-col-reverse md:flex-row justify-end gap-3 md:gap-4 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/5">
             <Link href="/students">
-              <Button variant="ghost" type="button" className="h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
+              <Button variant="ghost" type="button" className="w-full md:w-auto h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
             </Link>
-            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 min-w-[200px]">
+            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 w-full md:w-auto md:min-w-[200px]">
               {loading ? "Processing..." : "Add Student"}
             </Button>
           </div>
@@ -554,27 +554,27 @@ export function StudentEditForm({ student, routes, vehicles }: { student: Studen
   const [loading, setLoading] = useState(false);
   const action = updateStudent.bind(null, student.id);
   return (
-    <div className="flex flex-col gap-8 max-w-5xl mx-auto w-full page-enter">
-      <div className="flex items-center gap-5">
+    <div className="flex flex-col gap-6 md:gap-8 max-w-5xl mx-auto w-full page-enter">
+      <div className="flex items-center gap-3 md:gap-5">
         <Link href="/students">
-          <Button variant="outline" size="icon" className="h-12 w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
-            <ArrowLeft className="h-5 w-5" />
+          <Button variant="outline" size="icon" className="h-10 w-10 md:h-12 md:w-12 rounded-2xl border-white/10 bg-white/5 hover:bg-white/10">
+            <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
           </Button>
         </Link>
         <div>
-          <h1 className="text-display-lux text-3xl">Edit Student</h1>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mt-1">Update Record: {student.STUDENT_NAME}</p>
+          <h1 className="text-display-lux text-xl md:text-3xl">Edit Student</h1>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-[9px] md:text-[10px] mt-0.5">Update Record: {student.STUDENT_NAME}</p>
         </div>
       </div>
 
-      <div className="panel-lux p-8 border-white/10">
+      <div className="panel-lux p-4 md:p-8 border-white/10">
         <form action={action} onSubmit={() => setLoading(true)}>
           <StudentFields routes={routes} vehicles={vehicles} defaults={student} />
-          <div className="flex justify-end gap-4 mt-12 pt-8 border-t border-white/5">
+          <div className="flex flex-col-reverse md:flex-row justify-end gap-3 md:gap-4 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/5">
             <Link href="/students">
-              <Button variant="ghost" type="button" className="h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
+              <Button variant="ghost" type="button" className="w-full md:w-auto h-12 px-8 rounded-16 font-bold text-white/40 hover:text-white hover:bg-white/5 transition-all">Cancel</Button>
             </Link>
-            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 min-w-[200px]">
+            <Button type="submit" disabled={loading} className="btn-yellow-premium h-12 px-10 rounded-16 w-full md:w-auto md:min-w-[200px]">
               {loading ? "Processing..." : "Save Changes"}
             </Button>
           </div>

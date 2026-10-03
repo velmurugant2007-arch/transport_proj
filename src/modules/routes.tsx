@@ -245,31 +245,31 @@ function RouteDetailView({ route, onClose }: { route: RouteWithRelations; onClos
     >
       <div className="h-full flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="p-8 border-b border-white/5 bg-white/[0.02]">
-          <div className="flex items-center justify-between mb-8">
-            <Button variant="ghost" onClick={onClose} className="h-10 rounded-full hover:bg-white/5 text-white/40">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Close Details
+        <div className="p-4 md:p-8 border-b border-white/5 bg-white/[0.02]">
+          <div className="flex items-center justify-between mb-4 md:mb-8">
+            <Button variant="ghost" onClick={onClose} className="h-9 md:h-10 rounded-full hover:bg-white/5 text-white/40 text-xs md:text-sm">
+              <ArrowLeft className="mr-1.5 md:mr-2 h-4 w-4" /> Close Details
             </Button>
-            <div className="flex gap-3">
+            <div className="flex gap-2 md:gap-3">
               <Link href={`/routes/${route.id}/edit`}>
-                <Button className="btn-yellow-premium h-10 rounded-12"><Edit className="h-4 w-4 mr-2" /> Edit Route</Button>
+                <Button className="btn-yellow-premium h-9 md:h-10 rounded-12 text-xs md:text-sm"><Edit className="h-3.5 w-3.5 md:h-4 md:w-4 mr-1.5 md:mr-2" /> Edit Route</Button>
               </Link>
               <DeleteButton onDelete={async () => { await deleteRoute(route.id); onClose(); }} itemName={`Route ${route.NAME}`} />
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center text-black shadow-[0_0_30px_rgba(244,180,0,0.2)]">
-              <MapPinned size={40} />
+          <div className="flex items-center gap-4 md:gap-6">
+            <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-2xl md:rounded-3xl bg-primary flex items-center justify-center text-black shadow-[0_0_30px_rgba(244,180,0,0.2)]">
+              <MapPinned className="w-8 h-8 md:w-10 md:h-10" />
             </div>
             <div>
-              <h2 className="text-3xl font-black text-white tracking-tight">{route.NAME}</h2>
-              <p className="text-sm font-bold text-white/40 uppercase tracking-widest mt-1">{route.DESCRIPTION || "NO NETWORK DESCRIPTION"}</p>
+              <h2 className="text-xl md:text-3xl font-black text-white tracking-tight">{route.NAME}</h2>
+              <p className="text-[10px] md:text-sm font-bold text-white/40 uppercase tracking-widest mt-0.5 md:mt-1">{route.DESCRIPTION || "NO NETWORK DESCRIPTION"}</p>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 space-y-12">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 md:space-y-12">
           {/* Fleet & Personnel Sync */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <section className="space-y-4">

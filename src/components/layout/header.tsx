@@ -146,9 +146,9 @@ export function Header() {
         </div>
       )}
 
-      <header className="glass-topbar flex items-center justify-between px-4 md:px-10 h-[80px] sticky top-0 z-[40]">
+      <header className="glass-topbar flex items-center justify-between px-3 md:px-10 h-[60px] md:h-[80px] sticky top-0 z-[40]">
         {/* Left Identity Context */}
-        <div className="flex items-center gap-3 md:gap-5">
+        <div className="flex items-center gap-2 md:gap-5 min-w-0 flex-1">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger className="md:hidden p-2 -ml-2 rounded-lg hover:bg-white/10 transition-colors cursor-pointer">
               <Menu className="h-6 w-6 text-white" />
@@ -157,11 +157,11 @@ export function Header() {
               <Sidebar />
             </SheetContent>
           </Sheet>
-          <div className="flex flex-col">
-            <h2 className="text-[16px] md:text-[19px] font-black text-white tracking-tight leading-tight">
+          <div className="flex flex-col min-w-0">
+            <h2 className="text-[13px] md:text-[19px] font-black text-white tracking-tight leading-tight truncate">
               {page.title}
             </h2>
-            <p className="text-[11px] font-bold text-white/40 tracking-[0.05em] uppercase mt-1">
+            <p className="text-[9px] md:text-[11px] font-bold text-white/40 tracking-[0.05em] uppercase mt-0.5 truncate">
               {page.sub}
             </p>
           </div>
@@ -172,7 +172,7 @@ export function Header() {
         </div>
 
         {/* Right Interactions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
           <button
             onClick={() => setSearchOpen(true)}
             className="hidden lg:flex items-center gap-4 px-5 h-11 rounded-16 cursor-pointer transition-all bg-white/5 border border-white/10 hover:border-primary/40 hover:bg-white/10 group shadow-lg"
@@ -187,24 +187,24 @@ export function Header() {
 
           <Link
             href="/notifications"
-            className="relative w-11 h-11 rounded-16 flex items-center justify-center transition-all duration-300 bg-white/5 border-2 border-primary/40 hover:bg-primary/10 hover:border-primary group shadow-lg"
+            className="relative w-9 h-9 md:w-11 md:h-11 rounded-16 flex items-center justify-center transition-all duration-300 bg-white/5 border-2 border-primary/40 hover:bg-primary/10 hover:border-primary group shadow-lg"
           >
-            <Bell className="h-5 w-5 text-white/30 group-hover:text-primary transition-all" />
-            <span className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-primary border-2 border-[#080809] shadow-[0_0_10px_#F4B400]" />
+            <Bell className="h-4 w-4 md:h-5 md:w-5 text-white/30 group-hover:text-primary transition-all" />
+            <span className="absolute top-2 right-2 md:top-3 md:right-3 w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-primary border-2 border-[#080809] shadow-[0_0_10px_#F4B400]" />
           </Link>
 
-          <div className="h-9 w-[1px] bg-white/10 mx-2" />
+          <div className="hidden md:block h-9 w-[1px] bg-white/10 mx-2" />
 
           <div className="relative">
             <button
               onClick={() => setDrop(!drop)}
               className={cn(
-                "flex items-center gap-3 pl-2.5 pr-4 py-2 rounded-16 transition-all duration-300 shadow-lg",
+                "flex items-center gap-2 md:gap-3 pl-2 md:pl-2.5 pr-2 md:pr-4 py-1.5 md:py-2 rounded-16 transition-all duration-300 shadow-lg",
                 drop ? "bg-primary/20 border-primary/40" : "bg-white/5 border-white/10 hover:bg-white/10"
               )}
             >
-              <div className="w-8 h-8 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30">
-                <User className="h-4.5 w-4.5 text-primary" />
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/30">
+                <User className="h-3.5 w-3.5 md:h-4.5 md:w-4.5 text-primary" />
               </div>
               <div className="hidden md:block text-left">
                 <p className="text-[13px] font-black text-white leading-none tracking-tight">
@@ -212,7 +212,7 @@ export function Header() {
                 </p>
                 <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mt-1.5">System Admin</p>
               </div>
-              <ChevronDown className={cn("h-4 w-4 text-white/30 transition-transform duration-300", drop && "rotate-180")} />
+              <ChevronDown className={cn("h-3 w-3 md:h-4 md:w-4 text-white/30 transition-transform duration-300", drop && "rotate-180")} />
             </button>
 
             {drop && (
